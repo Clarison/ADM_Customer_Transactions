@@ -8,7 +8,7 @@ import requests
 import streamlit as st
 
 
-from streamlit_lottie import st_lottie
+
 
 
 st.set_page_config(page_title="Hufty Bikes Analysis App", layout="wide")
