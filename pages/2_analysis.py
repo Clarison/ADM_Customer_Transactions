@@ -49,11 +49,12 @@ with row6_1:
 with row6_2:
     st.subheader("Gender Distribution Over Time")
 
- st.markdown(
+
+st.markdown(
         "For one last bit of analysis, we scraped a few hundred book lists from famous thinkers in technology, media, and government (everyone from Barack and Michelle Obama to Keith Rabois and Naval Ravikant). We took your list of books read and tried to recommend one of their lists to book through based on information we gleaned from your list"
     )
-    st.markdown("***")
-    st.markdown(
+st.markdown("***")
+st.markdown(
         "Thanks for going through this mini-analysis with me! I'd love feedback on this, so if you want to reach out you can find me on [twitter](https://twitter.com/tylerjrichards) or my [website](http://www.tylerjrichards.com/)."
     )
         
