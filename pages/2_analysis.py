@@ -26,15 +26,7 @@ data = pd.read_excel('KPMG_VI_New_raw_data_update_final.xlsx', sheet_name= "NewC
 
 with row3_1:
     st.subheader("Customer State")
-    fig = px.bar(
-        data,
-        x="State",
-        y="Number of Customers",
-        title="Number of Customers by State",
-        color_discrete_sequence=["#9EE6CF"],
-    )
-    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
-                
+ 
 
 with row3_2:
     st.subheader("Book Age")
