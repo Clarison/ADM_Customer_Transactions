@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_extras.add_vertical_space import add_vertical_space
+
 
 st.set_page_config(page_title="Hufty Bikes Analysis App", layout="wide")
 st.title("Analyzing of Hufty Bikes")
@@ -17,7 +17,7 @@ with row3_1:
 with row3_2:
     st.subheader("Book Age")
 
-add_vertical_space()
+
 row4_space1, row4_1, row4_space2, row4_2, row4_space3 = st.columns(
     (0.1, 1, 0.1, 1, 0.1)
 )
@@ -28,7 +28,7 @@ with row4_1:
 with row4_2:
     st.subheader("How do Goodreads Users Rate Your Reads?")
 
-add_vertical_space()
+
 row5_space1, row5_1, row5_space2, row5_2, row5_space3 = st.columns(
     (0.1, 1, 0.1, 1, 0.1)
 )
@@ -38,7 +38,7 @@ with row5_1:
 with row5_2:
     st.subheader("How Quickly Do You Read?")
 
-add_vertical_space()
+
 row6_space1, row6_1, row6_space2, row6_2, row6_space3 = st.columns(
     (0.1, 1, 0.1, 1, 0.1)
 )
