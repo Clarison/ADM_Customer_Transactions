@@ -8,7 +8,7 @@ import requests
 import streamlit as st
 
 
-
+data= st.file_uploader("upload a csv")
 
 
 st.set_page_config(page_title="Hufty Bikes Analysis App", layout="wide")
