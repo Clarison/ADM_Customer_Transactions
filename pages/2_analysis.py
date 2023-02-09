@@ -1,9 +1,9 @@
 import urllib.request
 
-import gender_guesser.detector as gender
+
 import numpy as np
 import pandas as pd
-import plotly.express as px
+import plotly as px
 import requests
 import streamlit as st
 import xmltodict
