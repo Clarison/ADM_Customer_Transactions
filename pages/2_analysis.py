@@ -1,4 +1,7 @@
 import streamlit as st
+import numpy as np
+import pandas as pd
+import plotly.express as px
 
 
 st.set_page_config(page_title="Hufty Bikes Analysis App", layout="wide")
@@ -11,8 +14,20 @@ row3_space1, row3_1, row3_space2, row3_2, row3_space3 = st.columns(
     (0.1, 1, 0.1, 1, 0.1)
 )
 
+data = pd.read_excel('KPMG_VI_New_raw_data_update_final.xlsx', sheet_name= "NewCustomerList", header =1 )
+
+
 with row3_1:
-    st.subheader("Books Read")
+    st.subheader("Customer State")
+    fig = px.bar(
+        data,
+        x="State",
+        y="Number of Customers",
+        title="Number of Customers by State",
+        color_discrete_sequence=["#9EE6CF"],
+    )
+    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+                
 
 with row3_2:
     st.subheader("Book Age")
