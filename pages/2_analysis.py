@@ -3,7 +3,7 @@ import urllib.request
 
 import numpy as np
 import pandas as pd
-import plotly as px
+
 import requests
 import streamlit as st
 import xmltodict
