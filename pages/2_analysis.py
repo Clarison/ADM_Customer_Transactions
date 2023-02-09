@@ -21,7 +21,7 @@ row3_space1, row3_1, row3_space2, row3_2, row3_space3 = st.columns(
     (0.1, 1, 0.1, 1, 0.1)
 )
 
-data = pd.read_excel('KPMG_VI_New_raw_data_update_final.xlsx', sheet_name= "NewCustomerList", header =1 )
+
 
 
 with row3_1:
