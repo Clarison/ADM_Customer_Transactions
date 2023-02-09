@@ -13,7 +13,8 @@ import streamlit as st
 
 st.set_page_config(page_title="Hufty Bikes Analysis App", layout="wide")
 st.title("Analyzing of Hufty Bikes")
-data= st.file_uploader("upload a csv")
+data=  pd.read_excel('KPMG_VI_New_raw_data_update_final.xlsx', sheet_name= "NewCustomerList", header =1 )
+
 st.markdown(
         "Hey there! Welcome to Clarison's Hufty Bikes Analysis App. will add despription here ")
 
