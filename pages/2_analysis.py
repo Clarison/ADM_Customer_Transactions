@@ -8,11 +8,12 @@ import requests
 import streamlit as st
 
 
-data= st.file_uploader("upload a csv")
+
 
 
 st.set_page_config(page_title="Hufty Bikes Analysis App", layout="wide")
 st.title("Analyzing of Hufty Bikes")
+data= st.file_uploader("upload a csv")
 st.markdown(
         "Hey there! Welcome to Clarison's Hufty Bikes Analysis App. will add despription here ")
 
