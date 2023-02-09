@@ -30,7 +30,7 @@ with row3_1:
     st.subheader("Customer State")
     uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
-        df = pd.read_excel(uploaded_file,sheet_name= "NewCustomerList", header =1 )
+        df = pd.read_excel(uploaded_file)
         st.write(df)    
     
  
