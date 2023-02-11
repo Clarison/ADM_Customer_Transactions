@@ -9,8 +9,8 @@ from streamlit_pandas_profiling import st_profile_report
 # emojis: https://www.webfx.com/tools/emoji-cheat-sheet/
 st.set_page_config(page_title="Sales Dashboard", page_icon=":bar_chart:", layout="wide")
 
-df = ge.read_excel(
-        "ADM_Customer_Transactions/pages/KPMG_VI_New_raw_data_update_final.xlsx",
+df = pd.read_excel(
+        "/pages/KPMG_VI_New_raw_data_update_final.xlsx",
         engine="openpyxl",
         sheet_name="CustomerDemographic"
     )
