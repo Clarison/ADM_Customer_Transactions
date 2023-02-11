@@ -11,3 +11,4 @@ plotly
 streamlit-extras>=0.2.4
 pandas-profiling
 great-expectations
+streamlit-pandas-profiling
