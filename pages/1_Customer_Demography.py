@@ -15,8 +15,12 @@ df = ge.read_excel(
         sheet_name="CustomerDemographic"
     )
 
-
-
+df1 = ge.read_excel(
+        "pages/file.xlsx",
+        engine="openpyxl",
+        sheet_name="Transactions",
+	  header=1	
+    )
 
 df.expect_column_values_to_be_between("age", 0, 100)
 
@@ -25,10 +29,10 @@ validation_result = df.validate()
 if validation_result["success"]:
     st.write("Data Validation Passed!")
 else:
-    st.write("Data Validation Failed but we fixed it :")
+    st.error("Data Validation Failed but we fixed it :")
     mask = (df["age"] <= 100)
     df = df.loc[mask, :]
-    st.write("DataFrame after dropping columns where Age > 100:")
+    st.warning("DataFrame after dropping columns where Age > 100:")
     
 
 
