@@ -10,7 +10,7 @@ from streamlit_pandas_profiling import st_profile_report
 st.set_page_config(page_title="Sales Dashboard", page_icon=":bar_chart:", layout="wide")
 
 df = ge.read_excel(
-        "ADM_Customer_Transactions/KPMG_VI_New_raw_data_update_final",
+        "ADM_Customer_Transactions/pages/file.xlsx",
         sheet_name="CustomerDemographic"
     )
 
