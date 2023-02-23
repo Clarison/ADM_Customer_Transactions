@@ -189,5 +189,43 @@ pr = df_selection.profile_report()
 
 st_profile_report(pr)
 
+cust = pd.merge(df, df1, how="inner", on=["customer_id", "customer_id"])
+
+
+pr2 = cust.profile_report()
+st_profile_report(pr2)
+
+
+cust["month"]=cust["transaction_date"].dt.month_name(locale="English")
+by_month = cust['month'].value_counts()
+
+fig_product_seg = px.bar(
+    by_month,
+    x="month",
+    y=by_month.index,
+    title="<b>Number of purchases by Month</b>",
+    color_discrete_sequence=["#0083B8"] * len(sales_by_segments),
+    template="plotly_white",
+)
+
+
+
+by_brand=cust["brand"].value_counts()
+
+fig_product_segb = px.bar(
+    by_brand,
+    x="brand",
+    y=by_brand.index,
+    title="<b>Number of purchases by brand</b>",
+    color_discrete_sequence=["#0083B8"] * len(sales_by_segments),
+    template="plotly_white",
+)
+
+
+left_column, mid_column = st.columns(2)
+left_column.plotly_chart(fig_product_seg, use_container_width=True)
+mid_column.plotly_chart(fig_product_segb, use_container_width=True)
+
+
 
 
