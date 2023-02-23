@@ -196,7 +196,7 @@ pr2 = cust.profile_report()
 st_profile_report(pr2)
 
 
-cust["month"]=cust["transaction_date"].dt.month_name(locale="English")
+cust["month"]=cust["transaction_date"].dt.month_name()
 by_month = cust['month'].value_counts()
 
 fig_product_seg = px.bar(
