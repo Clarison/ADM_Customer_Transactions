@@ -46,6 +46,10 @@ def load_data():
 
     # Load data
     transaction_df = pd.DataFrame(results, columns=[desc[0] for desc in cur.description])
+    transaction_df.rename(columns=str.lower, inplace=True)
+    
+ 
+
 
     # Process data
     transaction_df = transaction_df.replace(" ", np.NaN)
