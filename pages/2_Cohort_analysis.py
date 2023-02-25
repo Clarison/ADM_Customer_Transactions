@@ -48,7 +48,7 @@ def load_data():
     transaction_df = pd.DataFrame(results, columns=[desc[0] for desc in cur.description])
     transaction_df.rename(columns=str.lower, inplace=True)
     
-st.dataframe(transaction_df)
+    
 
 
     # Process data
@@ -89,7 +89,7 @@ def get_date_int(df, column):
     day = df[column].dt.day
     return year, month, day
 
-
+st.dataframe(transaction_df)
 # Getting the integers for date parts from the `InvoiceDay` column
 transcation_year, transaction_month, _ = get_date_int(
     transaction_df, "TransactionMonth"
