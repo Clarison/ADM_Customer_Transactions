@@ -13,18 +13,6 @@ st.title("Cohort Analysis → `Bikes` dataset")
 st.write("")
 
 
-    st.write("")
-
-    st.markdown(
-        """
-    The underlying code groups those purchases into cohorts and calculates the `retention rate` (split by month) so that one can answer the question:
-    *if I'm making monthly changes to my store to get people to come back and buy more bikes, are those changes working?"*
-    These cohorts are then visualized and interpreted through a heatmap [powered by Plotly](https://plotly.com/python/).
-    """
-    )
-
-    st.write("")
-
 # A function that will parse the date Time based cohort:  1 day of month
 def get_month(x):
     return dt.datetime(x.year, x.month, 1)
