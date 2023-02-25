@@ -35,7 +35,6 @@ st.title("Cohort Analysis → `Bikes` dataset")
 st.write("")
 
 
-st.dataframe(df)
 
 # A function that will parse the date Time based cohort:  1 day of month
 def get_month(x):
