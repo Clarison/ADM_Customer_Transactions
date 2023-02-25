@@ -53,7 +53,7 @@ def load_data():
 
 
     # Process data
-    transaction_df = transaction_df.replace(" ", np.NaN)
+    #transaction_df = transaction_df.replace(" ", np.NaN)
     transaction_df = transaction_df.fillna(transaction_df.mean())
     transaction_df["TransactionMonth"] = transaction_df["transaction_date"].apply(
         get_month
