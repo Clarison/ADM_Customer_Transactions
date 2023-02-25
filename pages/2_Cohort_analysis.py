@@ -113,7 +113,7 @@ dtypes = transaction_df.dtypes.astype(str)
 # Show dtypes
 # dtypes
 
-transaction_df_new_slider_01 = transaction_df[["brand", "product_line"]]
+transaction_df_new_slider_01 = transaction_df[["brand", "product_line","product_class"]]
 new_slider_01 = [col for col in transaction_df_new_slider_01]
 
 transaction_df_new_slider_02 = transaction_df[["list_price", "standard_cost"]]
@@ -140,6 +140,14 @@ with col2:
             "Select the value(s)", col_one_list, ["Solex", "Trek Bicycles"]
         )
         transaction_df = transaction_df[transaction_df["brand"].isin(multiselect)]
+        
+    if MetricSlider01 == "product_class":
+        # col_one_list = transaction_df_new["brand"].tolist()
+        col_one_list = transaction_df_new_slider_01["product_class"].drop_duplicates().tolist()
+        multiselect = st.multiselect(
+            "Select the value(s)", col_one_list, ["medium", "Trek Bicycles","small"]
+        )
+        transaction_df = transaction_df[transaction_df["product_class"].isin(multiselect)]   
 
     elif MetricSlider01 == "product_line":
         col_one_list = (
