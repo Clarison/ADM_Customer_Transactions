@@ -13,4 +13,4 @@ pandas-profiling
 great-expectations
 streamlit-pandas-profiling
 openpyxl
-xlrd
+snowflake-snowpark-python
