@@ -13,5 +13,5 @@ pandas-profiling
 great-expectations
 streamlit-pandas-profiling
 openpyxl
-snowflake-snowpark-python
+datetime
 
