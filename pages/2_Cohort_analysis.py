@@ -196,7 +196,7 @@ try:
         z=retention,
         # Best
         # colorscale="Aggrnyl",
-        colorscale="Bluyl",
+        colorscale="reds",
     )
 
     fig.update_layout(title_text="Monthly cohorts showing retention rates")
