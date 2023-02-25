@@ -3,6 +3,7 @@ import plotly.graph_objs as go
 import pandas as pd
 import numpy as np
 import datetime as dt
+import snowflake.connector as sf
 
 # The code below is for the title and logo for this page.
 st.set_page_config(page_title="Cohort Analysis on the Bikes dataset", page_icon="🚲")
