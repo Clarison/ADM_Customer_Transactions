@@ -24,8 +24,7 @@ cur.execute('SELECT * FROM transaction')
 # Fetch the results into a Pandas DataFrame
 results = cur.fetchall()
 df = pd.DataFrame(results, columns=[desc[0] for desc in cur.description])
-df.rename(columns=str.lower, inplace=True)
-st.dataframe(df)
+
 
 
 # The code below is for the title and logo for this page.
