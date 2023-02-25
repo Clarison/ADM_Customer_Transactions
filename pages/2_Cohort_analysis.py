@@ -47,7 +47,7 @@ def load_data():
     # Load data
     transaction_df = pd.DataFrame(results, columns=[desc[0] for desc in cur.description])
     transaction_df = transaction_df.rename(columns=str.lower, inplace=True)
-    transaction_df['transaction_date'] = pd.to_datetime(df['transaction_date'])
+    #transaction_df['transaction_date'] = pd.to_datetime(df['transaction_date'])
     
     
 
