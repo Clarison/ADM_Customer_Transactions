@@ -167,7 +167,7 @@ try:
         colorscale="Bluyl",
     )
 
-    fig.update_layout(title_text="Monthly cohorts showing retention rates", title_x=0.5)
+    fig.update_layout(title_text="Monthly cohorts showing retention rates")
     fig.layout.xaxis.title = "Cohort Group"
     fig.layout.yaxis.title = "Cohort Period"
     fig["layout"]["title"]["font"] = dict(size=25)
