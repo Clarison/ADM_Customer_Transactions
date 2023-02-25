@@ -14,4 +14,4 @@ great-expectations
 streamlit-pandas-profiling
 openpyxl
 datetime
-
+snowflake-connector-python
