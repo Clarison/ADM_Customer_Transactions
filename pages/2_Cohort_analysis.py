@@ -175,7 +175,7 @@ try:
     fig.layout.height = 750
     fig.layout.xaxis.tickvals = retention.columns
     fig.layout.yaxis.tickvals = retention.index
-    fig.layout.plot_bgcolor = "#efefef"  # Set the background color to white
+    fig.layout.plot_bgcolor = "##000000"  # Set the background color to white
     fig.layout.margin.b = 100
     fig
 
