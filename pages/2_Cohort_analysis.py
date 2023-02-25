@@ -48,7 +48,7 @@ def load_data():
     transaction_df = pd.DataFrame(results, columns=[desc[0] for desc in cur.description])
     transaction_df.rename(columns=str.lower, inplace=True)
     
- st.dataframe(transaction_df)
+st.dataframe(transaction_df)
 
 
     # Process data
