@@ -7,38 +7,11 @@ import datetime as dt
 # The code below is for the title and logo for this page.
 st.set_page_config(page_title="Cohort Analysis on the Bikes dataset", page_icon="🚲")
 
-st.image(
-    "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/325/bicycle_1f6b2.png",
-    width=160,
-)
 
 st.title("Cohort Analysis → `Bikes` dataset")
 
 st.write("")
 
-st.markdown(
-    """
-    This demo is inspired by this [Cohort Analysis Tutorial](https://github.com/maladeep/cohort-retention-rate-analysis-in-python).
-"""
-)
-
-with st.expander("About this app"):
-
-    st.write("")
-
-    st.markdown(
-        """
-    This dataset comes from the hypothetical `Sprocket Central Pty Ltd`, a medium size bikes & cycling accessories organisation.
-    The data spans from `January 1, 2017` to `December 31, 2017` and is available in CSV format (downloadable [here](https://www.kaggle.com/datasets/archit9406/customer-transaction-dataset)).
-    Each row in the dataset contains information about an individual bike purchase:
-    - Who bought it
-    - How much they paid
-    - The bike's `brand` and `product line`
-    - Its `class` and `size`
-    - What day the purchase happened
-    - The day the product was first sold
-    """
-    )
 
     st.write("")
 
