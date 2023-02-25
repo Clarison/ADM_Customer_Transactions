@@ -45,15 +45,17 @@ def get_month(x):
 def load_data():
 
     # Load data
-    transaction_df = pd.DataFrame(results, columns=[desc[0] for desc in cur.description])
-    transaction_df = transaction_df.rename(columns=str.lower, inplace=True)
+    transaction_df =pd.read_excel("pages/file.xlsx" ,engine="openpyxl" , sheet_name="Transactions")
+    
+    #transaction_df = pd.DataFrame(results, columns=[desc[0] for desc in cur.description])
+    #transaction_df = transaction_df.rename(columns=str.lower, inplace=True)
     #transaction_df['transaction_date'] = pd.to_datetime(df['transaction_date'])
     
     
 
 
     # Process data
-    #transaction_df = transaction_df.replace(" ", np.NaN)
+    transaction_df = transaction_df.replace(" ", np.NaN)
     transaction_df = transaction_df.fillna(transaction_df.mean())
     transaction_df["TransactionMonth"] = transaction_df["transaction_date"].apply(
         get_month
