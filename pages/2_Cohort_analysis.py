@@ -17,6 +17,15 @@ conn = sf.connect(
     schema='public'
 )
 
+
+cur = conn.cursor()
+cur.execute('SELECT * FROM transaction')
+
+# Fetch the results into a Pandas DataFrame
+results = cur.fetchall()
+df = pd.DataFrame(results, columns=[desc[0] for desc in cur.description])
+
+
 # The code below is for the title and logo for this page.
 st.set_page_config(page_title="Cohort Analysis on the Bikes dataset", page_icon="🚲")
 
