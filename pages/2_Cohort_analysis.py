@@ -34,7 +34,7 @@ st.title("Cohort Analysis → `Bikes` dataset")
 
 st.write("")
 
-st.dataframe(df)
+
 
 # A function that will parse the date Time based cohort:  1 day of month
 def get_month(x):
@@ -48,7 +48,7 @@ def load_data():
     transaction_df = pd.DataFrame(results, columns=[desc[0] for desc in cur.description])
     transaction_df.rename(columns=str.lower, inplace=True)
     
- 
+ st.dataframe(transaction_df)
 
 
     # Process data
