@@ -11,7 +11,7 @@ import snowflake.connector as sf
 conn = sf.connect(
     user='clarison',
     password='23301631cD*',
-    account='wh80921.us-east-2.aws.snowflakecomputing.com',
+    account='wh80921.us-east-2.aws',
     warehouse='compute_wh',
     database='huftybikes',
     schema='public'
