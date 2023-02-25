@@ -5,6 +5,18 @@ import numpy as np
 import datetime as dt
 import snowflake.connector as sf
 
+
+
+# Connect to Snowflake
+conn = sf.connect(
+    user='clarison',
+    password='23301631cD*',
+    account='wh80921.us-east-2.aws.snowflakecomputing.com',
+    warehouse='compute_wh',
+    database='huftybikes',
+    schema='public'
+)
+
 # The code below is for the title and logo for this page.
 st.set_page_config(page_title="Cohort Analysis on the Bikes dataset", page_icon="🚲")
 
