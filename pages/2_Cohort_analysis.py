@@ -34,9 +34,8 @@ st.title("Cohort Analysis → `Bikes` dataset")
 
 st.write("")
 
-new = pd.DataFrame(results, columns=[desc[0] for desc in cur.description])
-new = new.rename(columns=str.lower, inplace=True)
-st.dataframe(new)
+df.rename(columns=str.lower, inplace=True)
+st.dataframe(df)
 
 # A function that will parse the date Time based cohort:  1 day of month
 def get_month(x):
