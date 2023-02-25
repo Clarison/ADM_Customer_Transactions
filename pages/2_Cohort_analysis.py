@@ -47,8 +47,8 @@ def get_month(x):
 def load_data():
 
     # Load data
-    #transaction_df =pd.read_excel("pages/file.xlsx" ,engine="openpyxl" , header=1 , sheet_name="Transactions")
-    transaction_df = df
+    transaction_df =pd.read_excel("pages/file.xlsx" ,engine="openpyxl" , header=1 , sheet_name="Transactions")
+    #transaction_df = df
     #transaction_df = pd.DataFrame(results, columns=[desc[0] for desc in cur.description])
     #transaction_df = transaction_df.rename(columns=str.lower, inplace=True)
     #transaction_df['transaction_date'] = pd.to_datetime(df['transaction_date'])
