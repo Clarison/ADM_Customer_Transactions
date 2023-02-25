@@ -34,7 +34,7 @@ st.title("Cohort Analysis → `Bikes` dataset")
 
 st.write("")
 
-df.rename(columns=str.lower, inplace=True)
+
 st.dataframe(df)
 
 # A function that will parse the date Time based cohort:  1 day of month
