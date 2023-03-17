@@ -13,13 +13,13 @@ conn = sf.connect(
     password='23301631cD*',
     account='wh80921.us-east-2.aws',
     warehouse='compute_wh',
-    database='huftybikes',
-    schema='public'
+    database='SNOWFLAKE_SAMPLE_DATA',
+    schema='TPCDS_SF10TCL'
 )
 
 
 cur = conn.cursor()
-cur.execute('SELECT * FROM transaction')
+cur.execute('SELECT * FROM customer')
 
 # Fetch the results into a Pandas DataFrame
 results = cur.fetchall()
