@@ -28,10 +28,10 @@ df = pd.DataFrame(results, columns=[desc[0] for desc in cur.description])
 
 
 # The code below is for the title and logo for this page.
-st.set_page_config(page_title="Cohort Analysis on the Bikes dataset", page_icon="🚲")
+st.set_page_config(page_title="TPCDS dataset", page_icon="🚲")
 
 
-st.title("Cohort Analysis → `Bikes` dataset")
+st.title("TPCDS dataset")
 
 st.write("")
 
