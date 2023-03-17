@@ -59,7 +59,7 @@ df_item=pd.read_sql_query("select d_year from date_dim",engine)
 st.sidebar.header("Please Filter Here:")
 year = st.sidebar.multiselect(
     "Select the Year:",
-    options=df_items["d_year"].unique(),
+    options=df_item["d_year"].unique(),
     default=df_item["d_year"].unique())
 
 df_selection = df.query(
