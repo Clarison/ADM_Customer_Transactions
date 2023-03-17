@@ -158,9 +158,11 @@ df = pd.read_sql_query("""select
    ,i_item_desc
    ,s_store_id
    ,s_store_name
- order by
-   sum(sr_return_quantity)
-  limit 100;""", engine)
+having
+sum(sr_return_quantity) > 1
+order by
+    sum(sr_return_quantity) desc
+  limit 10;""", engine)
 df.rename(columns=str.lower, inplace=True)
 st.dataframe(df)
 
