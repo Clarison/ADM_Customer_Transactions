@@ -32,34 +32,24 @@ st.write("""Query 26: Computes the average quantity, list price, discount, sales
 channel where the promotion was not offered by mail or in an event for given gender, marital status and
 educational status.""")
 
-df = pd.read_sql_query("""with customer_total_return as
- (select wr_returning_customer_sk as ctr_customer_sk
-        ,ca_state as ctr_state, 
- 	sum(wr_return_amt) as ctr_total_return
- from web_returns
-     ,date_dim
-     ,customer_address
- where wr_returned_date_sk = d_date_sk 
-   and d_year =2002
-   and wr_returning_addr_sk = ca_address_sk 
- group by wr_returning_customer_sk
-         ,ca_state)
-  select  c_customer_id,c_salutation,c_first_name,c_last_name,c_preferred_cust_flag
-       ,c_birth_day,c_birth_month,c_birth_year,c_birth_country,c_login,c_email_address
-       ,c_last_review_date,ctr_total_return
- from customer_total_return ctr1
-     ,customer_address
-     ,customer
- where ctr1.ctr_total_return > (select avg(ctr_total_return)*1.2
- 			  from customer_total_return ctr2 
-                  	  where ctr1.ctr_state = ctr2.ctr_state)
-       and ca_address_sk = c_current_addr_sk
-       and ca_state = 'GA'
-       and ctr1.ctr_customer_sk = c_customer_sk
- order by c_customer_id,c_salutation,c_first_name,c_last_name,c_preferred_cust_flag
-                  ,c_birth_day,c_birth_month,c_birth_year,c_birth_country,c_login,c_email_address
-                  ,c_last_review_date,ctr_total_return
- limit 100""", engine)
+df = pd.read_sql_query("""select  i_item_id, 
+        avg(cs_quantity) agg1,
+        avg(cs_list_price) agg2,
+        avg(cs_coupon_amt) agg3,
+        avg(cs_sales_price) agg4 
+ from catalog_sales, customer_demographics, date_dim, item, promotion
+ where cs_sold_date_sk = d_date_sk and
+       cs_item_sk = i_item_sk and
+       cs_bill_cdemo_sk = cd_demo_sk and
+       cs_promo_sk = p_promo_sk and
+       cd_gender = 'M' and 
+       cd_marital_status = 'S' and
+       cd_education_status = 'College' and
+       (p_channel_email = 'N' or p_channel_event = 'N') and
+       d_year = 2000 
+ group by i_item_id
+ order by i_item_id
+  limit 100""", engine)
 df.rename(columns=str.lower, inplace=True)
 st.dataframe(df)
 
