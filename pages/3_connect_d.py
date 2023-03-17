@@ -169,7 +169,7 @@ st.dataframe(df)
 
 
 st.write("query 30 ")
-df2 = pd.read_sql_query(""" with customer_total_return as
+df = pd.read_sql_query("""with customer_total_return as
  (select wr_returning_customer_sk as ctr_customer_sk
         ,ca_state as ctr_state, 
  	sum(wr_return_amt) as ctr_total_return
@@ -197,4 +197,4 @@ df2 = pd.read_sql_query(""" with customer_total_return as
                   ,c_birth_day,c_birth_month,c_birth_year,c_birth_country,c_login,c_email_address
                   ,c_last_review_date,ctr_total_return
  limit 100;""", engine)
-st.dataframe(df2)
+st.dataframe(df)
