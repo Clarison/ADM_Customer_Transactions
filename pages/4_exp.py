@@ -40,7 +40,7 @@ year = st.sidebar.multiselect(
     options=df_item["d_year"].unique().tolist(),
     default=df_item["d_year"].unique())
 
-st.write('You selected:', year)
+st.write('You selected:', @year)
 
 
 df = pd.read_sql_query("""select  i_item_id, 
