@@ -5,6 +5,21 @@ import numpy as np
 import datetime as dt
 import snowflake.connector as sf
 from sqlalchemy import create_engine
+from snowflake.sqlalchemy import URL
+
+
+
+#trying chemy
+
+
+engine = create_engine(URL(
+    account = 'wh80921.us-east-2.aws',
+    user = 'clarison',
+    password = '23301631cD*',
+    database = 'SNOWFLAKE_SAMPLE_DATA',
+    schema = 'TPCDS_SF10TCL',
+    warehouse = 'compute_wh'
+))
 
 
 
