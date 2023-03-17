@@ -169,7 +169,8 @@ st.dataframe(df)
 
 # create a bar chart
 fig, ax = plt.subplots()
-ax.bar(df['i_item_id'], df['store_returns_quantity'])
+ax.bar(df['i_item_id'], df['store_returns_quantity'],label='returns')
+ax.bar(df['i_item_id'], df['store_sales_quantity'],label='sales')
 ax.set_title('Purchase Return by Product')
 ax.set_xlabel('Product')
 ax.set_ylabel('Purchase Return')
