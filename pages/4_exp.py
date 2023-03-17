@@ -40,6 +40,11 @@ year = st.sidebar.multiselect(
     options=df_item["d_year"].unique(),
     default=df_item["d_year"].unique())
 
+st.write('You selected:', options)
+
+st.write('default:', default)
+
+
 df = pd.read_sql_query("""select  i_item_id, 
         avg(cs_quantity) agg1,
         avg(cs_list_price) agg2,
