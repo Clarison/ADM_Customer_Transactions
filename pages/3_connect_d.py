@@ -159,10 +159,7 @@ df = pd.read_sql_query("""select
    ,s_store_id
    ,s_store_name
  order by
-    i_item_id 
-   ,i_item_desc
-   ,s_store_id
-   ,s_store_name
+   sum(sr_return_quantity)
   limit 100;""", engine)
 df.rename(columns=str.lower, inplace=True)
 st.dataframe(df)
