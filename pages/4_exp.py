@@ -48,5 +48,3 @@ df.rename(columns=str.lower, inplace=True)
 st.dataframe(df)
 
 
-df2 = pd.read_sql_query("SELECT  top 20 * FROM customer", engine)
-st.dataframe(df2)
