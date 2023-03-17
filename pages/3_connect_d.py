@@ -176,6 +176,8 @@ ax.set_xlabel('Product')
 ax.set_ylabel('Purchase Return')
 ax.legend()
 
+ax.tick_params(axis='y', rotation=0)
+
 # display the chart in Streamlit
 st.pyplot(fig)
 
