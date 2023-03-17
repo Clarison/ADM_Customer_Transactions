@@ -15,3 +15,4 @@ streamlit-pandas-profiling
 openpyxl
 datetime
 snowflake-connector-python
+snowflake-sqlalchemy
