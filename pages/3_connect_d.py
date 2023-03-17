@@ -19,7 +19,7 @@ conn = sf.connect(
 
 
 cur = conn.cursor()
-cur.execute('SELECT * FROM customer')
+cur.execute('SELECT top 20 * FROM customer')
 
 # Fetch the results into a Pandas DataFrame
 results = cur.fetchall()
