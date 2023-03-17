@@ -163,7 +163,7 @@ having
 sum(sr_return_quantity) > 1
 order by
     sum(sr_return_quantity) desc
-  limit 10;""", engine, params={'month': 9})
+  limit 10;""", engine, params={'month': '9'})
 df.rename(columns=str.lower, inplace=True)
 st.dataframe(df)
 
