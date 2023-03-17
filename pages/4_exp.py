@@ -10,13 +10,12 @@ from snowflake.sqlalchemy import URL
 #trying chemy
 
 engine = create_engine(URL(
-    account = 'xfb32314.us-east-1',
-    user = 'ALEKYAKASTURY',
-    password = '@Noon1240',
+    account = 'wh80921.us-east-2.aws',
+    user = 'clarison',
+    password = '23301631cD*',
     database = 'SNOWFLAKE_SAMPLE_DATA',
-    schema = 'TPCDS_SF100TCL',
-    warehouse = 'COMPUTE_WH',
-    role='ACCOUNTADMIN',
+    schema = 'TPCDS_SF10TCL',
+    warehouse = 'compute_wh'
 ))
 
 
