@@ -37,7 +37,7 @@ df_item=pd.read_sql_query("select d_year from date_dim where d_year between 2000
 st.sidebar.header("Please Filter Here:")
 year = st.sidebar.multiselect(
     "Select the Year:",
-    options=df_item["d_year"].unique(),
+    options=df_item["d_year"].unique().tolist(),
     default=df_item["d_year"].unique())
 
 st.write('You selected:', year)
