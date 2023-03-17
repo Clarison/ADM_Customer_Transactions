@@ -62,7 +62,7 @@ df = pd.read_sql_query("""select  i_item_id,
 df.rename(columns=str.lower, inplace=True)
 st.dataframe(df)
 
-
+my_var=9
 st.write("query 28")
 
 df = pd.read_sql_query("""select  *
@@ -163,7 +163,7 @@ having
 sum(sr_return_quantity) > 1
 order by
     sum(sr_return_quantity) desc
-  limit 10;""", engine, params={'month': '9'})
+  limit 10;""", engine, params={'month': my_var})
 df.rename(columns=str.lower, inplace=True)
 st.dataframe(df)
 
