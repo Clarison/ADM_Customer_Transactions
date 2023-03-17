@@ -28,7 +28,7 @@ st.write("")
 
 
 st.write("new")
-df = pd.read_sql_query("SELECT  top 20 * FROM customer", engine)
+df = pd.read_sql_query("SELECT  top 20 C_CURRENT_ADDR_SK FROM customer", engine)
 df.rename(columns=str.lower, inplace=True)
 st.dataframe(df)
 
