@@ -139,7 +139,7 @@ df = pd.read_sql_query("""select
    ,store
    ,item
  where
-     d1.d_moy               = 9 
+     d1.d_moy               = :month 
  and d1.d_year              = 1999
  and d1.d_date_sk           = ss_sold_date_sk
  and i_item_sk              = ss_item_sk
@@ -163,7 +163,7 @@ having
 sum(sr_return_quantity) > 1
 order by
     sum(sr_return_quantity) desc
-  limit 10;""", engine)
+  limit 10;""", engine, params={'month': 9})
 df.rename(columns=str.lower, inplace=True)
 st.dataframe(df)
 
