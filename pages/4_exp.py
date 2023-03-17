@@ -40,7 +40,7 @@ year = st.sidebar.multiselect(
     options=df_item["d_year"].unique().tolist(),
     default=df_item["d_year"].unique())
 
-st.write('You selected:', @year)
+st.write('You selected:', year)
 
 
 df = pd.read_sql_query("""select  i_item_id, 
@@ -57,6 +57,6 @@ df = pd.read_sql_query("""select  i_item_id,
        cd_marital_status = 'S' and
        cd_education_status = 'College' and
        (p_channel_email = 'N' or p_channel_event = 'N') and
-       d_year = 2001 group by i_item_id order by i_item_id limit 100""", engine)
+       d_year = (?) group by i_item_id order by i_item_id limit 100""", engine,params=(year,))
 df.rename(columns=str.lower, inplace=True)
 st.dataframe(df)
