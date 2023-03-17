@@ -14,8 +14,7 @@ engine = create_engine(URL(
     password = '@Noon1240',
     database = 'SNOWFLAKE_SAMPLE_DATA',
     schema = 'TPCDS_SF100TCL',
-    warehouse = 'COMPUTE_WH',
-    role='ACCOUNTADMIN',
+    warehouse = 'COMPUTE_WH'
 ))
 
 
