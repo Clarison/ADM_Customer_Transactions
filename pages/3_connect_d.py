@@ -21,8 +21,8 @@ engine = create_engine(URL(
     warehouse = 'compute_wh'
 ))
 
-
-
+df2 = pd.read_sql_query("SELECT  top 20 * FROM customer", engine)
+st.dataframe(df2)
 
 
 # Connect to Snowflake
