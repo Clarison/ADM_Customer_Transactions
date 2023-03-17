@@ -27,7 +27,10 @@ st.title("TPCDS dataset")
 st.write("")
 
 
-st.write("new")
+st.write("""Query 26: Computes the average quantity, list price, discount, sales price for promotional items sold through the catalog
+channel where the promotion was not offered by mail or in an event for given gender, marital status and
+educational status.""")
+
 df = pd.read_sql_query("""select  i_item_id, avg(cs_quantity) agg1, avg(cs_list_price) agg2,
         avg(cs_coupon_amt) agg3,
         avg(cs_sales_price) agg4 
