@@ -167,7 +167,7 @@ df = pd.read_sql_query("""select
 df.rename(columns=str.lower, inplace=True)
 st.dataframe(df)
 
-st.write("query 29")
+st.write("query 34")
 
 df = pd.read_sql_query("""select c_last_name
        ,c_first_name
