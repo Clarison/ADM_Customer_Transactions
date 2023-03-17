@@ -174,6 +174,9 @@ ax.set_title('Purchase Return by Product')
 ax.set_xlabel('Product')
 ax.set_ylabel('Purchase Return')
 
+# display the chart in Streamlit
+st.pyplot(fig)
+
 st.write("query 34")
 
 df = pd.read_sql_query("""select c_last_name
