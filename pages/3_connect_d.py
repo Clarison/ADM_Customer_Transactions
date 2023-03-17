@@ -167,6 +167,13 @@ order by
 df.rename(columns=str.lower, inplace=True)
 st.dataframe(df)
 
+# create a bar chart
+fig, ax = plt.subplots()
+ax.bar(df['i_item_id'], df['store_returns_quantity'])
+ax.set_title('Purchase Return by Product')
+ax.set_xlabel('Product')
+ax.set_ylabel('Purchase Return')
+
 st.write("query 34")
 
 df = pd.read_sql_query("""select c_last_name
