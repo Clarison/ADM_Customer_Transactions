@@ -63,7 +63,7 @@ year = st.sidebar.multiselect(
     default=df_item["d_year"].unique()
 
 df_selection = df.query(
-    "d_year == @year
+    "d_year == @year"
 )
 
 
