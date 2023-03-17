@@ -60,7 +60,7 @@ st.sidebar.header("Please Filter Here:")
 year = st.sidebar.multiselect(
     "Select the Year:",
     options=df_items["d_year"].unique(),
-    default=df_item["d_year"].unique()
+    default=df_item["d_year"].unique())
 
 df_selection = df.query(
     "d_year == @year"
