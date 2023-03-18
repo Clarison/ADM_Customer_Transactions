@@ -88,10 +88,41 @@ sales whose discounts exceeded the average discount by at least 30%.""")
 # get user input for year
 
 distinct_date_query1 = "select d_date from date_dim;"
-distinct_date1 = pd.read_sql_query(distinct_date_query1, engine)['d_year'].unique().tolist()
+distinct_date1 = pd.read_sql_query(distinct_date_query1, engine)['d_date'].unique().tolist()
 date1 = st.selectbox('Year', distinct_date1)
 
 manufacture_id_query1 = "select i_manufact_id from item;"
 distinct_manufacture_id = pd.read_sql_query(manufacture_id_query1, engine)['i_manufact_id'].unique().tolist()
 manufacture_id = st.selectbox('Year', distinct_manufacture_id) 
+
+query1="""select  sum(cs_ext_discount_amt)  as excess_discount_amount
+from 
+   catalog_sales 
+   ,item 
+   ,date_dim
+where
+i_manufact_id = {}
+and i_item_sk = cs_item_sk 
+and d_date between '{}' and 
+        date_add(cast('{}' as date), 90 )
+and d_date_sk = cs_sold_date_sk 
+and cs_ext_discount_amt  
+     > ( 
+         select 
+            1.3 * avg(cs_ext_discount_amt) 
+         from 
+            catalog_sales 
+           ,date_dim
+         where 
+              cs_item_sk = i_item_sk 
+          and d_date between '{}' and
+                             date_add(cast('{}' as date), 90 )
+          and d_date_sk = cs_sold_date_sk 
+      ) 
+ limit 100;""".format(date1,manufacture_id)
+
+df1 = pd.read_sql_query(query1, engine)
+df1.rename(columns=str.lower, inplace=True)
+st.dataframe(df1)
+
 
