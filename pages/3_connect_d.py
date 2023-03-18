@@ -40,7 +40,7 @@ st.dataframe(df)
 
 st.write("query 27")
 df = pd.read_sql_query("""select  i_item_id,
-        s_state, grouping(s_state) g_state,
+        s_state,
         avg(ss_quantity) agg1,
         avg(ss_list_price) agg2,
         avg(ss_coupon_amt) agg3,
@@ -55,12 +55,26 @@ df = pd.read_sql_query("""select  i_item_id,
        cd_education_status = 'College' and
        d_year = 2002 and
        s_state = 'TN'
- group by rollup(i_item_id, s_state)
- order by i_item_id
-         ,s_state
-  limit 100;""", engine)
+ group by i_item_id, s_state
+ order by agg1 desc
+  limit 10;""", engine)
 df.rename(columns=str.lower, inplace=True)
 st.dataframe(df)
+
+# create a bar chart
+fig, ax = plt.subplots()
+ax.bar(df['i_item_id'], df['agg2'],label='List')
+ax.bar(df['i_item_id'], df['agg4'],label='Sale')
+ax.set_title('List and Sale Price by Product')
+ax.set_xlabel('Product')
+ax.set_ylabel('List and Sale')
+ax.legend()
+
+# rotate the y-axis label
+ax.tick_params(axis='y', labelrotation=0)
+
+# display the chart in Streamlit
+st.pyplot(fig)
 
 
 st.write("query 28")
