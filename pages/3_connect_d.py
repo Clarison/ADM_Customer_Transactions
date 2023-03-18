@@ -103,7 +103,7 @@ st.pyplot(fig)
 
 
 
-st.write("query 29")
+st.write("Get all items that were sold in stores in a specific month and year and which were returned in the next six months of the same year and re-purchased by the returning customer afterwards through the catalog sales channel in the following three years. For those these items, compute the total quantity sold through the store, the quantity returned and the quantity purchased through the catalog. Group this information by item and store.")
 
 
 # get user input for month and year
@@ -162,7 +162,6 @@ LIMIT 10;"""
 df = pd.read_sql_query(query, engine)
 df.rename(columns=str.lower, inplace=True)
 
-st.dataframe(df)
 
 # create a bar chart
 fig, ax = plt.subplots()
