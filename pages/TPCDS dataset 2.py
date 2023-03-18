@@ -9,7 +9,7 @@ from snowflake.sqlalchemy import URL
 import matplotlib.pyplot as plt
 #trying chemy
 
-engine = create_engine(URL(
+engine = create_engine(URL( 
     account = 'xfb32314.us-east-1',
     user = 'ALEKYAKASTURY',
     password = '@Noon1240',
