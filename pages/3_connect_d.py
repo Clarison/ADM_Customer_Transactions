@@ -42,7 +42,14 @@ st.dataframe(df)
 year = 2002
 gender = st.selectbox('Gender', ['M', 'F'])
 marital_status =st.selectbox('Marital Status', ['S', 'U','D','M','W']) 
-education_status = 'College'
+
+
+# get the distinct education status values from the database
+distinct_education_status_query = "select distinct cd_education_status from customer_demographics;"
+distinct_education_status = pd.read_sql_query(distinct_education_status_query, engine)['cd_education_status'].tolist()
+
+# create a dropdown for the education status parameter with the distinct education status values
+education_status = st.selectbox('Education Status', distinct_education_status)
 
 # get the distinct state values from the database
 distinct_states_query = "select distinct s_state from store;"
