@@ -84,10 +84,10 @@ st.pyplot(fig)
 
 # sort the dataframe by agg1 in descending order
 df= df.sort_values('agg1', ascending=True)
-df= df.sort_values('agg3', ascending=True)
+
 # create a bar chart
 fig, ax = plt.subplots()
-ax.plot(df['agg1'], df['agg3'])
+ax.scatter(df['agg1'], df['agg3'])
 ax.set_title('Quantity and Coupon amount')
 ax.set_ylabel('Coupon Amount')
 ax.set_xlabel('Quantity')
