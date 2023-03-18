@@ -82,8 +82,10 @@ ax.legend()
 # display the chart in Streamlit
 st.pyplot(fig)
 
-st.write("""Compute the total discounted amount for a particular manufacturer in a particular 90 day period for catalog
-sales whose discounts exceeded the average discount by at least 30%.""")
+st.write("""What is the monthly sales figure based on extended price for a specific month in a specific year, for
+manufacturers in a specific category in a given time zone. Group sales by manufacturer identifier and sort
+output by sales amount, by channel, and give Total sales.
+""")
 
 # get user input for year
 
@@ -93,29 +95,78 @@ manufacture_id = st.number_input('Enter an id between 1 and 1000', min_value=1, 
 date1 = st.date_input('Enter a date in the YYYY-MM-DD format')
 
 
-query1=f"""select  sum(cs_ext_discount_amt)  as excess_discount_amount
-from 
-   catalog_sales 
-   ,item 
-   ,date_dim
-where
-i_manufact_id = {manufacture_id}
-and i_item_sk = cs_item_sk 
-and d_date between '{date1}' and '{date1+90}'
-and d_date_sk = cs_sold_date_sk 
-and cs_ext_discount_amt  
-     > ( 
-         select 
-            1.3 * avg(cs_ext_discount_amt) 
-         from 
-            catalog_sales 
-           ,date_dim
-         where 
-              cs_item_sk = i_item_sk 
-          and d_date between '{date1}' and '{date1+90}'
-          and d_date_sk = cs_sold_date_sk 
-      ) 
- limit 10;"""
+query1="""with ss as (
+ select
+          i_manufact_id,sum(ss_ext_sales_price) total_sales
+ from
+ 	store_sales,
+ 	date_dim,
+         customer_address,
+         item
+ where
+         i_manufact_id in (select
+  i_manufact_id
+from
+ item
+where i_category in ('Electronics'))
+ and     ss_item_sk              = i_item_sk
+ and     ss_sold_date_sk         = d_date_sk
+ and     d_year                  = 1998
+ and     d_moy                   = 5
+ and     ss_addr_sk              = ca_address_sk
+ and     ca_gmt_offset           = -5 
+ group by i_manufact_id),
+ cs as (
+ select
+          i_manufact_id,sum(cs_ext_sales_price) total_sales
+ from
+ 	catalog_sales,
+ 	date_dim,
+         customer_address,
+         item
+ where
+         i_manufact_id               in (select
+  i_manufact_id
+from
+ item
+where i_category in ('Electronics'))
+ and     cs_item_sk              = i_item_sk
+ and     cs_sold_date_sk         = d_date_sk
+ and     d_year                  = 1998
+ and     d_moy                   = 5
+ and     cs_bill_addr_sk         = ca_address_sk
+ and     ca_gmt_offset           = -5 
+ group by i_manufact_id),
+ ws as (
+ select
+          i_manufact_id,sum(ws_ext_sales_price) total_sales
+ from
+ 	web_sales,
+ 	date_dim,
+         customer_address,
+         item
+ where
+         i_manufact_id               in (select
+  i_manufact_id
+from
+ item
+where i_category in ('Electronics'))
+ and     ws_item_sk              = i_item_sk
+ and     ws_sold_date_sk         = d_date_sk
+ and     d_year                  = 1998
+ and     d_moy                   = 5
+ and     ws_bill_addr_sk         = ca_address_sk
+ and     ca_gmt_offset           = -5
+ group by i_manufact_id)
+  select  i_manufact_id ,sum(total_sales) total_sales
+ from  (select * from ss 
+        union all
+        select * from cs 
+        union all
+        select * from ws) tmp1
+ group by i_manufact_id
+ order by total_sales
+ limit 100;"""
 
 df1 = pd.read_sql_query(query1, engine)
 #df1.rename(columns=str.lower, inplace=True)
