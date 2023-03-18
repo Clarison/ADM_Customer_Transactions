@@ -41,7 +41,7 @@ st.dataframe(df)
 # define the parameters
 year = 2002
 gender = st.selectbox('Gender', ['M', 'F'])
-marital_status = 'S'
+marital_status =st.selectbox('Marital Status', ['S', 'U','D','M','W']) 
 education_status = 'College'
 
 # get the distinct state values from the database
