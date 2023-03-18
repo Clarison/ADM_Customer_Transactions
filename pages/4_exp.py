@@ -141,7 +141,7 @@ query1="""with ss as
        > case when ss2.store_sales > 0 then ss3.store_sales/ss2.store_sales else null end
  order by ss1.ca_county;""".format(year1)
 
-df1 = pd.read_sql_query(query, engine)
+df1 = pd.read_sql_query(query1, engine)
 df1.rename(columns=str.lower, inplace=True)
 st.dataframe(df1)
 
