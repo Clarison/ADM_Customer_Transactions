@@ -92,10 +92,10 @@ output by sales amount, by channel, and give Total sales.
 # get user input for month and year
 manufacture_id = st.number_input('Enter an id between 1 and 1000', min_value=1, max_value=1000)
 
-date1 = st.date_input('Enter a date in the YYYY-MM-DD format')
+year = st.number_input('Enter a year', min_value=1990, max_value=2023)
 
 
-query1="""with ss as (
+query1=f"""with ss as (
  select
           i_manufact_id,sum(ss_ext_sales_price) total_sales
  from
@@ -111,7 +111,7 @@ from
 where i_category in ('Electronics'))
  and     ss_item_sk              = i_item_sk
  and     ss_sold_date_sk         = d_date_sk
- and     d_year                  = 1998
+ and     d_year                  = {year}
  and     d_moy                   = 5
  and     ss_addr_sk              = ca_address_sk
  and     ca_gmt_offset           = -5 
@@ -132,7 +132,7 @@ from
 where i_category in ('Electronics'))
  and     cs_item_sk              = i_item_sk
  and     cs_sold_date_sk         = d_date_sk
- and     d_year                  = 1998
+ and     d_year                  = {year}
  and     d_moy                   = 5
  and     cs_bill_addr_sk         = ca_address_sk
  and     ca_gmt_offset           = -5 
@@ -153,7 +153,7 @@ from
 where i_category in ('Electronics'))
  and     ws_item_sk              = i_item_sk
  and     ws_sold_date_sk         = d_date_sk
- and     d_year                  = 1998
+ and     d_year                  = {year}
  and     d_moy                   = 5
  and     ws_bill_addr_sk         = ca_address_sk
  and     ca_gmt_offset           = -5
