@@ -108,6 +108,29 @@ ax.tick_params(axis='y', labelrotation=0)
 st.pyplot(fig)
 
 
+# create a bar chart with two bars per product
+fig, ax = plt.subplots()
+bar_width = 0.4
+opacity = 0.8
+ax.bar(df['i_item_id'] - bar_width/2, df['agg2'], bar_width,
+       alpha=opacity, label='List')
+ax.bar(df['i_item_id'] + bar_width/2, df['agg4'], bar_width,
+       alpha=opacity, label='Sale')
+ax.set_title('AVG List and Sale Price by Product')
+ax.set_xlabel('Product')
+ax.set_ylabel('AVG List and Sale')
+ax.legend()
+
+# rotate the y-axis label
+ax.tick_params(axis='y', labelrotation=0)
+
+# set the x-axis tick labels to be the product IDs
+ax.set_xticklabels(df['i_item_id'].tolist())
+
+# display the chart in Streamlit
+st.pyplot(fig)
+
+
 st.write("query 28")
 
 df = pd.read_sql_query("""select  *
