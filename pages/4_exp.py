@@ -89,7 +89,7 @@ distinct_year_query1 = "select d_year from date_dim where d_year between 2000 an
 distinct_year1 = pd.read_sql_query(distinct_year_query1, engine)['d_year'].unique().tolist()
 year1 = st.selectbox('Year', distinct_year1)
 
-query="""with ss as
+query1="""with ss as
  (select ca_county,d_qoy, d_year,sum(ss_ext_sales_price) as store_sales
  from store_sales,date_dim,customer_address
  where ss_sold_date_sk = d_date_sk
@@ -139,11 +139,11 @@ query="""with ss as
        > case when ss2.store_sales > 0 then ss3.store_sales/ss2.store_sales else null end
  order by ss1.ca_county;""".format(year1)
 
-df = pd.read_sql_query(query, engine)
-df.rename(columns=str.lower, inplace=True)
-st.dataframe(df)
+df1 = pd.read_sql_query(query1, engine)
+df1.rename(columns=str.lower, inplace=True)
+st.dataframe(df1)
 
 # rename the columns to lowercase
-df.rename(columns=str.lower, inplace=True)
+df1.rename(columns=str.lower, inplace=True)
 
 
