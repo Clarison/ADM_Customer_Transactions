@@ -180,13 +180,13 @@ df1.rename(columns=str.lower, inplace=True)
 df1.rename(columns=str.lower, inplace=True)
 
 # sort the dataframe by total_sales in descending order
-df1= df1.sort_values('total_sales', ascending=True)
+df1= df1.sort_values('manufacturer', ascending=True)
 
 # create a bar chart
 fig, ax = plt.subplots()
-ax.bar(df1['manufacturer'], df1['i_category'])
+ax.bar(df1['manufacturer'], df1['total_sales'])
 ax.set_title('Total Sales for each manufacturer for a given year, given month, time zone and category')
-ax.set_ylabel('Total Sales')
+ax.set_ylabel('Categor')
 ax.set_xlabel('Manufacturers')
 ax.legend()
 
