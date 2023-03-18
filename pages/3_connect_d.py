@@ -176,9 +176,8 @@ year = st.number_input('Enter a year', min_value=1999, max_value=2023)
 
 
 
-# define the SQL query with the parameters
-query = """
-   SELECT   
+# SQL query with parameters
+query = f"""SELECT   
      i_item_id
     ,i_item_desc
     ,s_store_id
@@ -221,6 +220,7 @@ SUM(sr_return_quantity) > 1
 ORDER BY
     SUM(sr_return_quantity) DESC
 LIMIT 10;"""
+
 
 # execute query and display results
 df = pd.read_sql_query(query, engine)
