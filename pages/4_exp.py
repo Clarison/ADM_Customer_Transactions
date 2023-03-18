@@ -87,13 +87,13 @@ sales whose discounts exceeded the average discount by at least 30%.""")
 
 # get user input for year
 
+# get user input for month and year
+manufacture_id = st.number_input('Enter an id between 1 and 1000', min_value=1, max_value=1000)
+
 distinct_date_query1 = "select d_date from date_dim;"
 distinct_date1 = pd.read_sql_query(distinct_date_query1, engine)['d_date'].unique().tolist()
 date1 = st.selectbox('Year', distinct_date1)
 
-manufacture_id_query1 = "select i_manufact_id from item;"
-distinct_manufacture_id = pd.read_sql_query(manufacture_id_query1, engine)['i_manufact_id'].unique().tolist()
-manufacture_id = st.selectbox('Year', distinct_manufacture_id) 
 
 query1="""select  sum(cs_ext_discount_amt)  as excess_discount_amount
 from 
