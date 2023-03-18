@@ -100,7 +100,7 @@ category = st.selectbox('Category', d_category)
 
 query1=f"""with ss as (
  select
-          i_manufact_id,sum(ss_ext_sales_price) total_sales 
+          to_char(i_manufact_id) as manufacturer,sum(ss_ext_sales_price) total_sales 
  from
  	store_sales,
  	date_dim,
@@ -180,11 +180,11 @@ df1.rename(columns=str.lower, inplace=True)
 df1.rename(columns=str.lower, inplace=True)
 
 # sort the dataframe by i_manufact_id in descending order
-#df1= df1.sort_values('i_manufact_id', ascending=True)
+df1= df1.sort_values('manufacturer', ascending=True)
 
 # create a bar chart
 fig, ax = plt.subplots()
-ax.bar(df1['i_manufact_id'], df1['total_sales'])
+ax.bar(df1['manufacturer'], df1['total_sales'])
 ax.set_title('Total Sales for each manufacturer for a given year, given month, time zone and category')
 ax.set_ylabel('Total Sales')
 ax.set_xlabel('Manufacturers')
