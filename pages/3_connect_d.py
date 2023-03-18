@@ -216,7 +216,7 @@ st.dataframe(df)
 distinct_counties = pd.read_sql_query('SELECT DISTINCT s_county FROM store', engine)['s_county'].tolist()
 
 # Create a sidebar with a county parameter input widget
-county = st.sidebar.selectbox('Select a county', distinct_counties)
+county = st.multiselect('Select a county', distinct_counties)
 
 # Define the SQL query with the county parameter placeholder
 sql_query = """
