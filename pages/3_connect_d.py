@@ -97,12 +97,11 @@ fig, ax = plt.subplots()
 ax.barh(df['i_item_id'], df['agg2'],label='List')
 ax.barh(df['i_item_id'], df['agg4'],label='Sale')
 ax.set_title('AVG List and Sale Price by Product')
-ax.set_xlabel('Product')
-ax.set_ylabel('AVG List and Sale')
+ax.set_ylabel('Product')
+ax.set_xlabel('AVG List and Sale')
 ax.legend()
 
-# rotate the y-axis label
-ax.tick_params(axis='y', labelrotation=0)
+
 
 # display the chart in Streamlit
 st.pyplot(fig)
