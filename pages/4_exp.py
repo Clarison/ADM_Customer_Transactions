@@ -99,10 +99,82 @@ year = st.number_input('Enter a year', min_value=1998, max_value=2023)
 d_category = pd.read_sql_query("select i_category from item", engine)['i_category'].unique().tolist()
 category = st.selectbox('Category', d_category)
 
+query1=f"""with ss as (
+ select
+          i_manufact_id,sum(ss_ext_sales_price) total_sales
+ from
+ 	store_sales,
+ 	date_dim,
+         customer_address,
+         item
+ where
+         i_manufact_id in (select
+  i_manufact_id
+from
+ item
+where i_category in ('{category}'))
+ and     ss_item_sk              = i_item_sk
+ and     ss_sold_date_sk         = d_date_sk
+ and     d_year                  = {year}
+ and     d_moy                   = 5
+ and     ss_addr_sk              = ca_address_sk
+ and     ca_gmt_offset           = {ca_gmt_offset}
+ group by i_manufact_id),
+ cs as (
+ select
+          i_manufact_id,sum(cs_ext_sales_price) total_sales
+ from
+ 	catalog_sales,
+ 	date_dim,
+         customer_address,
+         item
+ where
+         i_manufact_id               in (select
+  i_manufact_id
+from
+ item
+where i_category in ('{category}'))
+ and     cs_item_sk              = i_item_sk
+ and     cs_sold_date_sk         = d_date_sk
+ and     d_year                  = {year}
+ and     d_moy                   = 5
+ and     cs_bill_addr_sk         = ca_address_sk
+ and     ca_gmt_offset           = {ca_gmt_offset}
+ group by i_manufact_id),
+ ws as (
+ select
+          i_manufact_id,sum(ws_ext_sales_price) total_sales
+ from
+ 	web_sales,
+ 	date_dim,
+         customer_address,
+         item
+ where
+         i_manufact_id               in (select
+  i_manufact_id
+from
+ item
+where i_category in ('{category}'))
+ and     ws_item_sk              = i_item_sk
+ and     ws_sold_date_sk         = d_date_sk
+ and     d_year                  = {year}
+ and     d_moy                   = 5
+ and     ws_bill_addr_sk         = ca_address_sk
+ and     ca_gmt_offset           = {ca_gmt_offset}
+ group by i_manufact_id)
+  select  i_manufact_id ,sum(total_sales) total_sales
+ from  (select * from ss 
+        union all
+        select * from cs 
+        union all
+        select * from ws) tmp1
+ group by i_manufact_id
+ order by total_sales
+ limit 100;"""
 
 
-#df1 = pd.read_sql_query(query1, engine)
+df1 = pd.read_sql_query(query1, engine)
 #df1.rename(columns=str.lower, inplace=True)
-#st.dataframe(df1)
+st.dataframe(df1)
 
 
