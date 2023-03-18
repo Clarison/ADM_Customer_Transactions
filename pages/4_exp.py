@@ -96,8 +96,8 @@ output by sales amount, by channel, and give Total sales.
 
 year = st.number_input('Enter a year', min_value=1998, max_value=2023)
 
-#d_category = pd.read_sql_query("select i_category from item", engine)['i_category'].unique().tolist()
-#category = st.selectbox('Category', d_category)
+d_category = pd.read_sql_query("select i_category from item", engine)['i_category'].unique().tolist()
+category = st.selectbox('Category', d_category)
 
 
 
