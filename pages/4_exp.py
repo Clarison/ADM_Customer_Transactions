@@ -87,9 +87,9 @@ growth in store sales in the first three consecutive quarters for a given year."
 
 # get user input for year
 
-distinct_year_query = "select d_year from date_dim where d_year between 2000 and 2023;"
-distinct_year = pd.read_sql_query(distinct_year_query, engine)['d_year'].unique().tolist()
-year = st.selectbox('Year', distinct_year)
+distinct_year_query1 = "select d_year from date_dim where d_year between 1999 and 2023;"
+distinct_year1 = pd.read_sql_query(distinct_year_query1, engine)['d_year'].unique().tolist()
+year1 = st.selectbox('Year', distinct_year1)
 
 
 
