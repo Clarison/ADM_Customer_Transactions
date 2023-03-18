@@ -68,3 +68,9 @@ ax.set_title('Email promotion and Sales')
 ax.set_xlabel('Email promotion')
 ax.set_ylabel('AVG List and Sale')
 ax.legend()
+
+# rotate the y-axis label
+ax.tick_params(axis='y', labelrotation=0)
+
+# display the chart in Streamlit
+st.pyplot(fig)
