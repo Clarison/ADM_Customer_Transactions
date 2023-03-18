@@ -94,7 +94,7 @@ distinct_state_query = "select distinct ca_state from customer_address;"
 distinct_state = pd.read_sql_query(distinct_state_query, engine)['ca_state'].tolist()
 
 # create a dropdown for the education status parameter with the distinct education status values
-state = st.selectbox('Education Status', distinct_state)
+state = st.selectbox('Enter State', distinct_state)
 
 query1=f"""with customer_total_return as
  (select wr_returning_customer_sk as ctr_customer_sk
