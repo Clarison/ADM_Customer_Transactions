@@ -114,7 +114,7 @@ query1="""with ss as
        ,ws ws3
  where
     ss1.d_qoy = 1
-    and ss1.d_year = 2000
+    and ss1.d_year = {}
     and ss1.ca_county = ss2.ca_county
     and ss2.d_qoy = 2
     and ss2.d_year = 2000
