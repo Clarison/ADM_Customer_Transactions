@@ -38,6 +38,8 @@ df.rename(columns=str.lower, inplace=True)
 st.dataframe(df)
 
 
+
+st.write("For all items sold in stores located in six states during a given year, find the average quantity, average list price,average list sales price, average coupon amount for a given gender, marital status, education and customer demographic")
 # define the parameters
 gender = st.selectbox('Gender', ['M', 'F'])
 marital_status =st.selectbox('Marital Status', ['S', 'U','D','M','W']) 
