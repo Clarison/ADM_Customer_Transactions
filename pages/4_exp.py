@@ -89,10 +89,11 @@ output by sales amount, by channel, and give Total sales.
 
 # get user input for year
 
-# get user input for month and year
-ca_gmt_offset = st.number_input('Enter a year', min_value=-10, max_value=-5)
+# get user input for month and year and offset
+ca_gmt_offset = st.number_input('Enter the offset', min_value=-10, max_value=-5)
 
 year = st.number_input('Enter a year', min_value=1998, max_value=2023)
+month = st.number_input('Enter a month', min_value=01, max_value=12)
 
 d_category = pd.read_sql_query("select i_category from item", engine)['i_category'].unique().tolist()
 category = st.selectbox('Category', d_category)
@@ -114,7 +115,7 @@ where i_category in ('{category}'))
  and     ss_item_sk              = i_item_sk
  and     ss_sold_date_sk         = d_date_sk
  and     d_year                  = {year}
- and     d_moy                   = 5
+ and     d_moy                   = {month}
  and     ss_addr_sk              = ca_address_sk
  and     ca_gmt_offset           = {ca_gmt_offset}
  group by i_manufact_id),
@@ -135,7 +136,7 @@ where i_category in ('{category}'))
  and     cs_item_sk              = i_item_sk
  and     cs_sold_date_sk         = d_date_sk
  and     d_year                  = {year}
- and     d_moy                   = 5
+ and     d_moy                   = {month}
  and     cs_bill_addr_sk         = ca_address_sk
  and     ca_gmt_offset           = {ca_gmt_offset}
  group by i_manufact_id),
@@ -156,7 +157,7 @@ where i_category in ('{category}'))
  and     ws_item_sk              = i_item_sk
  and     ws_sold_date_sk         = d_date_sk
  and     d_year                  = {year}
- and     d_moy                   = 5
+ and     d_moy                   = {month}
  and     ws_bill_addr_sk         = ca_address_sk
  and     ca_gmt_offset           = {ca_gmt_offset}
  group by i_manufact_id)
