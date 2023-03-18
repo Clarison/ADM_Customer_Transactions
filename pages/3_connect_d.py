@@ -90,7 +90,8 @@ df = pd.read_sql_query(query, engine)
 # rename the columns to lowercase
 df.rename(columns=str.lower, inplace=True)
 
-
+# sort the dataframe by agg2 in descending order
+df= df.sort_values('agg2', ascending=False)
 
 # create a bar chart
 fig, ax = plt.subplots()
