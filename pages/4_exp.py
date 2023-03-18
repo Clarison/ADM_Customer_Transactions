@@ -82,64 +82,44 @@ ax.legend()
 # display the chart in Streamlit
 st.pyplot(fig)
 
-st.write("""List counties where the percentage growth in web sales is consistently higher compared to the percentage
-growth in store sales in the first three consecutive quarters for a given year.""")
+st.write("""Compute the total discounted amount for a particular manufacturer in a particular 90 day period for catalog
+sales whose discounts exceeded the average discount by at least 30%.""")
 
 # get user input for year
 
-distinct_year_query1 = "select d_year from date_dim where d_year between 1999 and 2023;"
-distinct_year1 = pd.read_sql_query(distinct_year_query1, engine)['d_year'].unique().tolist()
-year1 = st.selectbox('Year', distinct_year1)
+distinct_date_query1 = "select d_date from date_dim;"
+distinct_date1 = pd.read_sql_query(distinct_date_query1, engine)['d_year'].unique().tolist()
+date1 = st.selectbox('Year', distinct_date1)
 
-query1="""with ss as
- (select ca_county,d_qoy, d_year,sum(ss_ext_sales_price) as store_sales
- from store_sales,date_dim,customer_address
- where ss_sold_date_sk = d_date_sk
-  and ss_addr_sk=ca_address_sk
- group by ca_county,d_qoy, d_year),
- ws as
- (select ca_county,d_qoy, d_year,sum(ws_ext_sales_price) as web_sales
- from web_sales,date_dim,customer_address
- where ws_sold_date_sk = d_date_sk
-  and ws_bill_addr_sk=ca_address_sk
- group by ca_county,d_qoy, d_year)
- select 
-        ss1.ca_county
-       ,ss1.d_year
-       ,ws2.web_sales/ws1.web_sales web_q1_q2_increase
-       ,ss2.store_sales/ss1.store_sales store_q1_q2_increase
-       ,ws3.web_sales/ws2.web_sales web_q2_q3_increase
-       ,ss3.store_sales/ss2.store_sales store_q2_q3_increase
- from
-        ss ss1
-       ,ss ss2
-       ,ss ss3
-       ,ws ws1
-       ,ws ws2
-       ,ws ws3
- where
-    ss1.d_qoy = 1
-    and ss1.d_year = {year1}
-    and ss1.ca_county = ss2.ca_county
-    and ss2.d_qoy = 2
-    and ss2.d_year = {year1}
- and ss2.ca_county = ss3.ca_county
-    and ss3.d_qoy = 3
-    and ss3.d_year = {year1}
-    and ss1.ca_county = ws1.ca_county
-    and ws1.d_qoy = 1
-    and ws1.d_year = {year1}
-    and ws1.ca_county = ws2.ca_county
-    and ws2.d_qoy = 2
-    and ws2.d_year = {year1}
-    and ws1.ca_county = ws3.ca_county
-    and ws3.d_qoy = 3
-    and ws3.d_year ={year1}
-    and case when ws1.web_sales > 0 then ws2.web_sales/ws1.web_sales else null end 
-       > case when ss1.store_sales > 0 then ss2.store_sales/ss1.store_sales else null end
-    and case when ws2.web_sales > 0 then ws3.web_sales/ws2.web_sales else null end
-       > case when ss2.store_sales > 0 then ss3.store_sales/ss2.store_sales else null end
- order by ss1.ca_county;""".format(year1)
+manufacture_id_query1 = "select i_manufact_id from item;"
+distinct_manufacture_id = pd.read_sql_query(manufacture_id_query1, engine)['i_manufact_id'].unique().tolist()
+manufacture_id = st.selectbox('Year', distinct_manufacture_id) 
+
+query1="""select  sum(cs_ext_discount_amt)  as excess_discount_amount
+from 
+   catalog_sales 
+   ,item 
+   ,date_dim
+where
+i_manufact_id = {}
+and i_item_sk = cs_item_sk 
+and d_date between '{}' and 
+        date_add(cast('{}' as date), 90 )
+and d_date_sk = cs_sold_date_sk 
+and cs_ext_discount_amt  
+     > ( 
+         select 
+            1.3 * avg(cs_ext_discount_amt) 
+         from 
+            catalog_sales 
+           ,date_dim
+         where 
+              cs_item_sk = i_item_sk 
+          and d_date between '{}' and
+                             date_add(cast('{}' as date), 90 )
+          and d_date_sk = cs_sold_date_sk 
+      ) 
+ limit 100;""".format(date1,manufacture_id)
 
 df1 = pd.read_sql_query(query1, engine)
 df1.rename(columns=str.lower, inplace=True)
