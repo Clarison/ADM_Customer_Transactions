@@ -32,12 +32,13 @@ st.write("""Query 26: Computes the average quantity, list price, discount, sales
 channel where the promotion was not offered by mail or in an event for given gender, marital status and
 educational status.""")
 
-distinct_year_query = "select d_year from date_dim where d_year between 2000 and 2023;"
+distinct_year_query = "select d_year from date_dim where d_year between 1990 and 2023;"
 distinct_year = pd.read_sql_query(distinct_year_query, engine)['d_year'].unique().tolist()
 year = st.selectbox('Year', distinct_year)
 
+gender = st.selectbox('Gender', ['M', 'F'])
+marital_status =st.selectbox('Marital Status', ['S', 'U','D','M','W']) 
 
-st.write('You selected:', year)
 
 query = """select  i_item_id, 
         avg(cs_quantity) agg1,
@@ -49,8 +50,8 @@ query = """select  i_item_id,
        cs_item_sk = i_item_sk and
        cs_bill_cdemo_sk = cd_demo_sk and
        cs_promo_sk = p_promo_sk and
-       cd_gender = 'M' and 
-       cd_marital_status = 'S' and
+       cd_gender = {} and 
+       cd_marital_status = {} and
        cd_education_status = 'College' and
        (p_channel_email = 'N' or p_channel_event = 'N') and
        d_year = {} group by i_item_id order by i_item_id limit 10""".format(year)
