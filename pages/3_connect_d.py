@@ -216,7 +216,7 @@ st.dataframe(df)
 distinct_counties = pd.read_sql_query('SELECT DISTINCT s_county FROM store', engine)['s_county'].tolist()
 
 # Create a sidebar with a county parameter input widget
-county = st.multiselect('Select a county', distinct_counties)
+counties = st.multiselect('Select counties', distinct_counties)
 
 # Define the SQL query with the county parameter placeholder
 sql_query = """
@@ -237,7 +237,7 @@ FROM (
             END
         ) > 1.2
         AND date_dim.d_year IN (1999, 2000, 2001)
-       AND store.s_county IN %(counties)s  -- parameterized WHERE clause
+        AND store.s_county IN %(counties)s -- parameterized WHERE clause with IN operator
     GROUP BY ss_ticket_number, ss_customer_sk
 ) dn, customer
 WHERE ss_customer_sk = c_customer_sk
