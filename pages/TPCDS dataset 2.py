@@ -10,12 +10,14 @@ import matplotlib.pyplot as plt
 #trying chemy
 
 engine = create_engine(URL(
-    account = 'xfb32314.us-east-1',
-    user = 'ALEKYAKASTURY',
-    password = '@Noon1240',
-    database = 'SNOWFLAKE_SAMPLE_DATA',
-    schema = 'TPCDS_SF100TCL',
-    warehouse = 'COMPUTE_WH' ))
+    account = 'xfb32314.us-east-1',
+    user = 'ALEKYAKASTURY',
+    password = '@Noon1240',
+    database = 'SNOWFLAKE_SAMPLE_DATA',
+    schema = 'TPCDS_SF10TCL',
+    warehouse = 'compute_wh'
+))
+
 
 
 # The code below is for the title and logo for this page.
