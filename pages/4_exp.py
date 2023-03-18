@@ -98,7 +98,7 @@ month = st.number_input('Enter a month', min_value=1, max_value=12)
 d_category = pd.read_sql_query("select i_category from item", engine)['i_category'].unique().tolist()
 category = st.selectbox('Category', d_category)
 
-query1="""with ss as (
+query1=f"""with ss as (
  select
           i_manufact_id,sum(ss_ext_sales_price) total_sales 
  from
