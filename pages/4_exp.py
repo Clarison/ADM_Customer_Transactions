@@ -99,7 +99,7 @@ category = st.selectbox('Category', d_category)
 
 query1=f"""with ss as (
  select
-          i_manufact_id,sum(ss_ext_sales_price) total_sales
+          i_manufact_id,sum(ss_ext_sales_price) total_sales 
  from
  	store_sales,
  	date_dim,
