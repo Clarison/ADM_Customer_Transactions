@@ -87,9 +87,9 @@ df= df.sort_values('agg1', ascending=True)
 
 # create a bar chart
 fig, ax = plt.subplots()
-ax.plot(df['agg1'], df['agg4'])
-ax.set_title('Quantity and Sales Price')
-ax.set_ylabel('Sales Price')
+ax.plot(df['agg1'], df['agg3'])
+ax.set_title('Quantity and Coupon amount')
+ax.set_ylabel('Coupon Amount')
 ax.set_xlabel('Quantity')
 ax.legend()
 
