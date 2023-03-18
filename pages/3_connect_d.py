@@ -38,13 +38,18 @@ df.rename(columns=str.lower, inplace=True)
 st.dataframe(df)
 
 
-
 # define the parameters
-state = 'TN'
 year = 2002
 gender = st.selectbox('Gender', ['M', 'F'])
 marital_status = 'S'
 education_status = 'College'
+
+# get the distinct state values from the database
+distinct_states_query = "select distinct s_state from store;"
+distinct_states = pd.read_sql_query(distinct_states_query, engine)['s_state'].tolist()
+
+# create a dropdown for the state parameter with the distinct state values
+state = st.selectbox('State', distinct_states)
 
 # define the SQL query with the parameters
 query = """
