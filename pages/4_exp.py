@@ -169,7 +169,7 @@ where i_category in ('{category}'))
         select * from ws) tmp1
  group by i_manufact_id
  order by total_sales
- limit 100;"""
+ limit 10;"""
 
 
 df1 = pd.read_sql_query(query1, engine)
