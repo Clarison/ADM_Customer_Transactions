@@ -111,7 +111,7 @@ query1=f"""with ss as (
   i_manufact_id
 from
  item
-where i_category in ('{category}'))
+where i_category in ({category}))
  and     ss_item_sk              = i_item_sk
  and     ss_sold_date_sk         = d_date_sk
  and     d_year                  = {year}
@@ -132,7 +132,7 @@ where i_category in ('{category}'))
   i_manufact_id
 from
  item
-where i_category in ('{category}'))
+where i_category in ({category}))
  and     cs_item_sk              = i_item_sk
  and     cs_sold_date_sk         = d_date_sk
  and     d_year                  = {year}
@@ -153,7 +153,7 @@ where i_category in ('{category}'))
   i_manufact_id
 from
  item
-where i_category in ('{category}'))
+where i_category in ({category}))
  and     ws_item_sk              = i_item_sk
  and     ws_sold_date_sk         = d_date_sk
  and     d_year                  = {year}
