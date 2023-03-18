@@ -246,7 +246,7 @@ ORDER BY c_last_name, c_first_name, c_salutation, c_preferred_cust_flag DESC, ss
 """
 
 # Execute the query with the county parameter and display the resulting DataFrame
-params = {'county': county}
+params = {'counties': tuple(counties)}
 df = pd.read_sql_query(sql_query, engine, params=params)
 st.dataframe(df)
 
