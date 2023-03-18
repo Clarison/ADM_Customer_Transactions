@@ -39,10 +39,14 @@ st.dataframe(df)
 
 
 
-# define the state variable
+# define the parameters
 state = 'TN'
+year = 2002
+gender = 'M'
+marital_status = 'S'
+education_status = 'College'
 
-# define the SQL query with the state variable
+# define the SQL query with the parameters
 query = """
     select i_item_id,
         s_state,
@@ -55,15 +59,15 @@ query = """
         and ss_item_sk = i_item_sk
         and ss_store_sk = s_store_sk
         and ss_cdemo_sk = cd_demo_sk
-        and cd_gender = 'M'
-        and cd_marital_status = 'S'
-        and cd_education_status = 'College'
-        and d_year = 2002
+        and cd_gender = '{}'
+        and cd_marital_status = '{}'
+        and cd_education_status = '{}'
+        and d_year = {}
         and s_state = '{}'
     group by i_item_id, s_state
     order by agg1 desc
     limit 10;
-""".format(state)
+""".format(gender, marital_status, education_status, year, state)
 
 # execute the query and fetch the results
 df = pd.read_sql_query(query, engine)
