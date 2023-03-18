@@ -226,11 +226,13 @@ LIMIT 10;"""
 df = pd.read_sql_query(query, engine)
 df.rename(columns=str.lower, inplace=True)
 
+st.dataframe(df)
+
 # create a bar chart
 fig, ax = plt.subplots()
 ax.barh(df['i_item_id'], df['store_sales_quantity'],label='sales')
 ax.barh(df['i_item_id'], df['store_returns_quantity'], bottom=df['store_sales_quantity'],label='returns')
-ax.bar(df['i_item_id'], df['catalog_sales_quantity'],bottom=df['store_sales_quantity']+df['store_returns_quantity'],label='repurchase')
+ax.barh(df['i_item_id'], df['catalog_sales_quantity'],bottom=df['store_sales_quantity']+df['store_returns_quantity'],label='repurchase')
 ax.set_title('Purchase Return by Product')
 ax.set_xlabel('Product')
 ax.set_ylabel('Purchase Return')
