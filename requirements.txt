@@ -17,4 +17,4 @@ datetime
 snowflake-connector-python
 snowflake-sqlalchemy
 altair
-snowpark
+
