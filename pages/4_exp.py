@@ -168,7 +168,7 @@ where i_category in ('{category}'))
         union all
         select * from ws) tmp1
  group by manufacturer
- order by total_sales
+ order by total_sales,manufacturer
  limit 10;"""
 
 
