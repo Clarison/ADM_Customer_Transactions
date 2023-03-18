@@ -90,7 +90,7 @@ sales whose discounts exceeded the average discount by at least 30%.""")
 # get user input for month and year
 manufacture_id = st.number_input('Enter an id between 1 and 1000', min_value=1, max_value=1000)
 
-date1 = st.date_input('Enter a date in the YYYY-MM-DD format',dt.date(2019, 7, 6))
+date1 = st.date_input('Enter a date in the YYYY-MM-DD format')
 
 
 query1=f"""select  sum(cs_ext_discount_amt)  as excess_discount_amount
@@ -102,7 +102,7 @@ where
 i_manufact_id = {manufacture_id}
 and i_item_sk = cs_item_sk 
 and d_date between '{date1}' and 
-        date_add(cast('{date1}' as date), 90 )
+        date_add(cast('{date1}'), 90 )
 and d_date_sk = cs_sold_date_sk 
 and cs_ext_discount_amt  
      > ( 
@@ -114,7 +114,7 @@ and cs_ext_discount_amt
          where 
               cs_item_sk = i_item_sk 
           and d_date between '{date1}' and
-                             date_add(cast('{date1}' as date), 90 )
+                             date_add(cast('{date1}'), 90 )
           and d_date_sk = cs_sold_date_sk 
       ) 
  limit 10;"""
