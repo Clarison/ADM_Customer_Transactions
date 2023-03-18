@@ -36,11 +36,9 @@ distinct_year_query = "select d_year from date_dim where d_year between 2000 and
 distinct_year = pd.read_sql_query(distinct_year_query, engine)['d_year'].unique().tolist()
 year = st.selectbox('Year', distinct_year)
 
-distinct_item_query = "select i_item_id from item;"
-distinct_item = pd.read_sql_query(distinct_year_query, engine)['i_item_id'].unique().tolist()
-item = st.selectbox('item', distinct_item)
 
 st.write('You selected:', year)
+
 query = """select  i_item_id, 
         avg(cs_quantity) agg1,
         avg(cs_list_price) agg2,
@@ -55,7 +53,7 @@ query = """select  i_item_id,
        cd_marital_status = 'S' and
        cd_education_status = 'College' and
        (p_channel_email = 'N' or p_channel_event = 'N') and
-       d_year = {} group by i_item_id order by i_item_id limit 100""".format(year,item)
+       d_year = {} group by i_item_id order by i_item_id limit 10""".format(year)
 
 df = pd.read_sql_query(query, engine)
 df.rename(columns=str.lower, inplace=True)
@@ -71,6 +69,6 @@ ax.legend()
 
 # rotate the y-axis label
 ax.tick_params(axis='y', labelrotation=0)
-
+plt.figure(figsize=(10,6))
 # display the chart in Streamlit
 st.pyplot(fig)
