@@ -65,9 +65,9 @@ st.dataframe(df)
 fig, ax = plt.subplots()
 ax.bar(df['i_item_id'], df['agg2'],label='List')
 ax.bar(df['i_item_id'], df['agg4'],label='Sale')
-ax.set_title('List and Sale Price by Product')
+ax.set_title('AVG List and Sale Price by Product')
 ax.set_xlabel('Product')
-ax.set_ylabel('List and Sale')
+ax.set_ylabel('AVG List and Sale')
 ax.legend()
 
 # rotate the y-axis label
