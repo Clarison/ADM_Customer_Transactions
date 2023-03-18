@@ -1,0 +1,8 @@
+{
+  "account": "wh80921.us-east-2.aws",
+  "user": "clarison",
+  "password": "23301631cD*",
+  "warehouse": "COMPUTE_WH",
+  "database": "CustomerSpending",
+  "schema": "Public"
+}
