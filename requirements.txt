@@ -16,3 +16,4 @@ openpyxl
 datetime
 snowflake-connector-python
 snowflake-sqlalchemy
+altair
