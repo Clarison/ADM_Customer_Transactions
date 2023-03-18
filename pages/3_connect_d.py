@@ -237,7 +237,7 @@ FROM (
             END
         ) > 1.2
         AND date_dim.d_year IN (1999, 2000, 2001)
-        AND store.s_county = %(county)s -- parameterized WHERE clause
+       AND store.s_county IN %(counties)s  -- parameterized WHERE clause
     GROUP BY ss_ticket_number, ss_customer_sk
 ) dn, customer
 WHERE ss_customer_sk = c_customer_sk
