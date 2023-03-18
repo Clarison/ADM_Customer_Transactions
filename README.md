@@ -33,18 +33,19 @@ Display all customers with specific buy potentials and whose dependent count to 
 
 Dataflow:
 
-
+![alt text](https://github.com/Clarison/ADM_Customer_Transactions/blob/main/ss5.JPG)
 
 
 
 Outputs:
 
+![alt text](https://github.com/Clarison/ADM_Customer_Transactions/blob/main/MicrosoftTeams-image%20(1).png)
 
+![alt text](https://github.com/Clarison/ADM_Customer_Transactions/blob/main/MicrosoftTeams-image.png)
 
+![alt text](https://github.com/Clarison/ADM_Customer_Transactions/blob/main/ss3.JPG)
 
-
-
-
+![alt text](https://github.com/Clarison/ADM_Customer_Transactions/blob/main/ss4.JPG)
 
 
 https://clarison-adm-customer-transac-hufty-bikes-customer-trans-kuc2yv.streamlit.app/TPCDS_dataset
