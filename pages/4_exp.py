@@ -32,13 +32,9 @@ st.write("""Query 26: Computes the average quantity, list price, discount, sales
 channel where the promotion was not offered by mail or in an event for given gender, marital status and
 educational status.""")
 
-df_item=pd.read_sql_query("select d_year from date_dim where d_year between 2000 and 2023",engine)
-
-st.sidebar.header("Please Filter Here:")
-year = st.sidebar.multiselect(
-    "Select the Year:",
-    options=df_item["d_year"].unique().tolist(),
-    default=df_item["d_year"].unique())
+distinct_year_query = "select d_year from date_dim where d_year between 2000 and 2023;"
+distinct_year = pd.read_sql_query(distinct_year_query, engine)['d_year'].tolist()
+year = st.selectbox('State', distinct_year)
 
 st.write('You selected:', year)
 query = """select  i_item_id, 
