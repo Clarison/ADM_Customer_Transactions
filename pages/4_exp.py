@@ -123,11 +123,28 @@ query1=f"""with customer_total_return as
  order by c_customer_id,c_salutation,c_first_name,c_last_name,c_preferred_cust_flag
                   ,c_birth_day,c_birth_month,c_birth_year,c_birth_country,c_login,c_email_address
                   ,c_last_review_date,ctr_total_return
- limit 100;
+ limit 10;
 """
 
 
 df1 = pd.read_sql_query(query1, engine)
 df1.rename(columns=str.lower, inplace=True)
-st.dataframe(df1)
+#st.dataframe(df1)
 
+
+# rename the columns to lowercase
+df1.rename(columns=str.lower, inplace=True)
+
+# sort the dataframe by total_sales in descending order
+df1= df1.sort_values('manufacturer', ascending=True)
+
+# create a bar chart
+fig, ax = plt.subplots()
+ax.bar(df1['c_customer_id'],df1['ctr_total_return'])
+ax.set_title('Customer ID vs number of returns')
+ax.set_ylabel('Total returns')
+ax.set_xlabel('Customers')
+ax.legend()
+
+# display the chart in Streamlit
+st.pyplot(fig)
