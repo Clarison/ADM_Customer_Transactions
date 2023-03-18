@@ -100,7 +100,7 @@ category = st.selectbox('Category', d_category)
 
 query1=f"""with ss as (
  select
-          cast(i_manufact_id as str) as manufacturer,sum(ss_ext_sales_price) total_sales 
+          to_char(i_manufact_id) as manufacturer,sum(ss_ext_sales_price) total_sales 
  from
  	store_sales,
  	date_dim,
