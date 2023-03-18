@@ -161,13 +161,13 @@ where i_category in ('{category}'))
  and     ws_bill_addr_sk         = ca_address_sk
  and     ca_gmt_offset           = {ca_gmt_offset}
  group by i_manufact_id)
-  select  i_manufact_id ,sum(total_sales) total_sales
+  select  manufacturer ,sum(total_sales) total_sales
  from  (select * from ss 
         union all
         select * from cs 
         union all
         select * from ws) tmp1
- group by i_manufact_id
+ group by manufacturer
  order by total_sales
  limit 10;"""
 
