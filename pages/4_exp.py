@@ -100,7 +100,7 @@ category = st.selectbox('Category', d_category)
 
 query1=f"""with ss as (
  select
-          to_char(i_manufact_id) as manufacturer,sum(ss_ext_sales_price) total_sales 
+          i_manufact_id,sum(ss_ext_sales_price) total_sales 
  from
  	store_sales,
  	date_dim,
@@ -161,14 +161,14 @@ where i_category in ('{category}'))
  and     ws_bill_addr_sk         = ca_address_sk
  and     ca_gmt_offset           = {ca_gmt_offset}
  group by i_manufact_id)
-  select  manufacturer ,sum(total_sales) total_sales
+  select  i_manufact_id ,sum(total_sales) total_sales
  from  (select * from ss 
         union all
         select * from cs 
         union all
         select * from ws) tmp1
- group by manufacturer
- order by manufacturer,total_sales
+ group by i_manufact_id
+ order by i_manufact_id,total_sales
  limit 10;"""
 
 
