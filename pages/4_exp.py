@@ -62,7 +62,7 @@ query = """select  i_item_id,
 
 df = pd.read_sql_query(query, engine)
 df.rename(columns=str.lower, inplace=True)
-st.dataframe(df)
+##st.dataframe(df)
 
 # rename the columns to lowercase
 df.rename(columns=str.lower, inplace=True)
@@ -79,7 +79,16 @@ ax.set_ylabel('Product')
 ax.set_xlabel('AVG List and Sale')
 ax.legend()
 
+# sort the dataframe by agg1 in descending order
+df= df.sort_values('agg1', ascending=True)
 
+# create a bar chart
+fig, ax = plt.subplots()
+ax.barh(df['agg1'], df['agg4'])
+ax.set_title('Quantity and Sales Price')
+ax.set_ylabel('Sales Price')
+ax.set_xlabel('Quantity')
+ax.legend()
 
 # display the chart in Streamlit
 st.pyplot(fig)
