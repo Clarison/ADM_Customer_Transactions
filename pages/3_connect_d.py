@@ -90,31 +90,7 @@ df = pd.read_sql_query(query, engine)
 # rename the columns to lowercase
 df.rename(columns=str.lower, inplace=True)
 
-# display the dataframe using Streamlit
-st.dataframe(df)
 
-st.write("query 27")
-df = pd.read_sql_query("""select  i_item_id,
-        s_state,
-        avg(ss_quantity) agg1,
-        avg(ss_list_price) agg2,
-        avg(ss_coupon_amt) agg3,
-        avg(ss_sales_price) agg4
- from store_sales, customer_demographics, date_dim, store, item
- where ss_sold_date_sk = d_date_sk and
-       ss_item_sk = i_item_sk and
-       ss_store_sk = s_store_sk and
-       ss_cdemo_sk = cd_demo_sk and
-       cd_gender = 'M' and
-       cd_marital_status = 'S' and
-       cd_education_status = 'College' and
-       d_year = 2002 and
-       s_state = 'TN'
- group by i_item_id, s_state
- order by agg1 desc
-  limit 10;""", engine)
-df.rename(columns=str.lower, inplace=True)
-st.dataframe(df)
 
 # create a bar chart
 fig, ax = plt.subplots()
