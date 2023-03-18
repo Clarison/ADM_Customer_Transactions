@@ -38,7 +38,11 @@ year = st.selectbox('Year', distinct_year)
 
 gender = st.selectbox('Gender', ['M', 'F'])
 marital_status =st.selectbox('Marital Status', ['S', 'U','D','M','W']) 
+distinct_education_status_query = "select distinct cd_education_status from customer_demographics;"
+distinct_education_status = pd.read_sql_query(distinct_education_status_query, engine)['cd_education_status'].tolist()
 
+# create a dropdown for the education status parameter with the distinct education status values
+education_status = st.selectbox('Education Status', distinct_education_status)
 
 query = """select  i_item_id, 
         avg(cs_quantity) agg1,
@@ -52,9 +56,9 @@ query = """select  i_item_id,
        cs_promo_sk = p_promo_sk and
        cd_gender = '{}' and 
        cd_marital_status = '{}' and
-       cd_education_status = 'College' and
+       cd_education_status = '{}' and
        (p_channel_email = 'N' or p_channel_event = 'N') and
-       d_year = {} group by i_item_id order by i_item_id limit 10""".format(gender,marital_status,year)
+       d_year = {} group by i_item_id order by i_item_id limit 10""".format(gender,marital_status,education_status,year)
 
 df = pd.read_sql_query(query, engine)
 df.rename(columns=str.lower, inplace=True)
@@ -64,8 +68,8 @@ fig, ax = plt.subplots()
 ax.barh(df['i_item_id'],df['agg1'],label='List')
 ax.barh(df['i_item_id'],df['agg4'],label='Sale')
 ax.set_title('Email promotion and Sales')
-ax.set_xlabel('Email promotion')
-ax.set_ylabel('AVG List and Sale')
+ax.set_xlabel('AVG List and Sale')
+ax.set_ylabel('Items')
 ax.legend()
 
 # rotate the y-axis label
