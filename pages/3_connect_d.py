@@ -213,7 +213,6 @@ st.dataframe(df)
 
 
 # Connect to the database and get the list of distinct counties from the store table
-engine = sqlalchemy.create_engine('database://user:password@host:port/database_name')
 distinct_counties = pd.read_sql_query('SELECT DISTINCT s_county FROM store', engine)['s_county'].tolist()
 
 # Create a sidebar with a county parameter input widget
