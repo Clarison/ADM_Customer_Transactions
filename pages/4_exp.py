@@ -119,7 +119,7 @@ and cs_ext_discount_amt
                              date_add(cast('{}' as date), 90 )
           and d_date_sk = cs_sold_date_sk 
       ) 
- limit 100;""".format(date1,manufacture_id)
+ limit 100;""".format(manufacture_id,date1)
 
 df1 = pd.read_sql_query(query1, engine)
 df1.rename(columns=str.lower, inplace=True)
