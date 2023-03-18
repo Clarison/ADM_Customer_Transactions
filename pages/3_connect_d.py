@@ -42,7 +42,7 @@ st.dataframe(df)
 # define the parameters
 state = 'TN'
 year = 2002
-gender = 'M'
+gender = st.selectbox('Gender', ['M', 'F'])
 marital_status = 'S'
 education_status = 'College'
 
