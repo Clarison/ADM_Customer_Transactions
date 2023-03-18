@@ -180,7 +180,7 @@ df1.rename(columns=str.lower, inplace=True)
 df1.rename(columns=str.lower, inplace=True)
 
 # sort the dataframe by i_manufact_id in descending order
-df1= df1.sort_values('i_manufact_id', ascending=True)
+#df1= df1.sort_values('i_manufact_id', ascending=True)
 
 # create a bar chart
 fig, ax = plt.subplots()
