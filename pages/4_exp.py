@@ -120,7 +120,7 @@ and cs_ext_discount_amt
  limit 10;"""
 
 df1 = pd.read_sql_query(query1, engine)
-df1.rename(columns=str.lower, inplace=True)
+#df1.rename(columns=str.lower, inplace=True)
 st.dataframe(df1)
 
 
