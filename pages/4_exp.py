@@ -50,8 +50,8 @@ query = """select  i_item_id,
        cs_item_sk = i_item_sk and
        cs_bill_cdemo_sk = cd_demo_sk and
        cs_promo_sk = p_promo_sk and
-       cd_gender = {} and 
-       cd_marital_status = {} and
+       cd_gender = '{}' and 
+       cd_marital_status = '{}' and
        cd_education_status = 'College' and
        (p_channel_email = 'N' or p_channel_event = 'N') and
        d_year = {} group by i_item_id order by i_item_id limit 10""".format(gender,marital_status,year)
