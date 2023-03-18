@@ -174,21 +174,5 @@ where i_category in ('{category}'))
 
 df1 = pd.read_sql_query(query1, engine)
 df1.rename(columns=str.lower, inplace=True)
-#st.dataframe(df1)
+st.dataframe(df1)
 
-# rename the columns to lowercase
-df1.rename(columns=str.lower, inplace=True)
-
-# sort the dataframe by total_sales in descending order
-df1= df1.sort_values('manufacturer', ascending=True)
-
-# create a bar chart
-fig, ax = plt.subplots()
-ax.bar(df1['total_sales'],df1['manufacturer'])
-ax.set_title('Total Sales for each manufacturer for a given year, given month, time zone and category')
-ax.set_ylabel('Sales')
-ax.set_xlabel('Manufacturers')
-ax.legend()
-
-# display the chart in Streamlit
-st.pyplot(fig)
