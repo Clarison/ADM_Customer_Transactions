@@ -136,7 +136,7 @@ df1.rename(columns=str.lower, inplace=True)
 df1.rename(columns=str.lower, inplace=True)
 
 # sort the dataframe by total_sales in descending order
-df1= df1.sort_values('manufacturer', ascending=True)
+df1= df1.sort_values('c_customer_id', ascending=True)
 
 # create a bar chart
 fig, ax = plt.subplots()
