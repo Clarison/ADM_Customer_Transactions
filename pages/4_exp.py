@@ -184,7 +184,7 @@ df1= df1.sort_values('total_sales', ascending=True)
 
 # create a bar chart
 fig, ax = plt.subplots()
-ax.bar(df1['manufacturer'], df1['total_sales'])
+ax.bar(df1['manufacturer'], df1['category'])
 ax.set_title('Total Sales for each manufacturer for a given year, given month, time zone and category')
 ax.set_ylabel('Total Sales')
 ax.set_xlabel('Manufacturers')
