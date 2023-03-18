@@ -57,6 +57,14 @@ df = pd.read_sql_query("""select  i_item_id,
        cd_marital_status = 'S' and
        cd_education_status = 'College' and
        (p_channel_email = 'N' or p_channel_event = 'N') and
-       d_year = (?) group by i_item_id order by i_item_id limit 100""", engine, params=(year))
+       d_year = 2000 group by i_item_id order by i_item_id limit 100""", engine, params=(year))
 df.rename(columns=str.lower, inplace=True)
 st.dataframe(df)
+
+fig, ax = plt.subplots()
+ax.bar(df['i_item_id'], df['agg2'],label='List')
+ax.bar(df['i_item_id'], df['agg4'],label='Sale')
+ax.set_title('Email promotion and Sales')
+ax.set_xlabel('Email promotion')
+ax.set_ylabel('AVG List and Sale')
+ax.legend()
