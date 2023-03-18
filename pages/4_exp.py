@@ -140,7 +140,7 @@ df1= df1.sort_values('c_customer_id', ascending=True)
 
 # create a bar chart
 fig, ax = plt.subplots()
-ax.bar(df1['c_customer_id'],df1['ctr_total_return'])
+ax.barh(df1['c_customer_id'],df1['ctr_total_return'])
 ax.set_title('Customer ID vs number of returns')
 ax.set_ylabel('Total returns')
 ax.set_xlabel('Customers')
