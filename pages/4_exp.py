@@ -90,10 +90,13 @@ output by sales amount, by channel, and give Total sales.
 # get user input for year
 
 # get user input for month and year
-manufacture_id = st.number_input('Enter an id between 1 and 1000', min_value=1, max_value=1000)
+d_ca_gmt_offset = pd.read_sql_query("select ca_gmt_offset from customer_address and ca_gmt_offset is not null", engine)['ca_gmt_offset'].unique().tolist()
+ca_gmt_offset = st.selectbox('GMT Offset', d_ca_gmt_offset)
 
-year = st.number_input('Enter a year', min_value=1990, max_value=2023)
+year = st.number_input('Enter a year', min_value=1998, max_value=2023)
 
+d_category = pd.read_sql_query("select i_category from item", engine)['i_category'].unique().tolist()
+category = st.selectbox('Category', d_category)
 
 query1=f"""with ss as (
  select
@@ -108,13 +111,13 @@ query1=f"""with ss as (
   i_manufact_id
 from
  item
-where i_category in ('Electronics'))
+where i_category in ('{category}'))
  and     ss_item_sk              = i_item_sk
  and     ss_sold_date_sk         = d_date_sk
  and     d_year                  = {year}
  and     d_moy                   = 5
  and     ss_addr_sk              = ca_address_sk
- and     ca_gmt_offset           = -5 
+ and     ca_gmt_offset           = {ca_gmt_offset}
  group by i_manufact_id),
  cs as (
  select
@@ -129,13 +132,13 @@ where i_category in ('Electronics'))
   i_manufact_id
 from
  item
-where i_category in ('Electronics'))
+where i_category in ('{category}'))
  and     cs_item_sk              = i_item_sk
  and     cs_sold_date_sk         = d_date_sk
  and     d_year                  = {year}
  and     d_moy                   = 5
  and     cs_bill_addr_sk         = ca_address_sk
- and     ca_gmt_offset           = -5 
+ and     ca_gmt_offset           = {ca_gmt_offset}
  group by i_manufact_id),
  ws as (
  select
@@ -150,13 +153,13 @@ where i_category in ('Electronics'))
   i_manufact_id
 from
  item
-where i_category in ('Electronics'))
+where i_category in ('{category}'))
  and     ws_item_sk              = i_item_sk
  and     ws_sold_date_sk         = d_date_sk
  and     d_year                  = {year}
  and     d_moy                   = 5
  and     ws_bill_addr_sk         = ca_address_sk
- and     ca_gmt_offset           = -5
+ and     ca_gmt_offset           = {ca_gmt_offset}
  group by i_manufact_id)
   select  i_manufact_id ,sum(total_sales) total_sales
  from  (select * from ss 
