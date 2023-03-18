@@ -29,7 +29,7 @@ def predict(inputs):
     Streamlit_data = session.table('Streamlit_data')
     
     snowdf_results = Streamlit_data.select(*inputs,
-                    call_udf("ml_xgboast_random_data.csv",(*inputs)).alias('PREDICTION')
+                    call_udf("ml_xgboast_random_data.csv", inputs).alias('PREDICTION')
                     )
 
     return snowdf_results
