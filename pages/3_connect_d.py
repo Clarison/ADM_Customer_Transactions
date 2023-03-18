@@ -94,8 +94,8 @@ df.rename(columns=str.lower, inplace=True)
 
 # create a bar chart
 fig, ax = plt.subplots()
-ax.bar(df['i_item_id'], df['agg2'],label='List')
-ax.bar(df['i_item_id'], df['agg4'],label='Sale')
+ax.barh(df['i_item_id'], df['agg2'],label='List')
+ax.barh(df['i_item_id'], df['agg4'],label='Sale')
 ax.set_title('AVG List and Sale Price by Product')
 ax.set_xlabel('Product')
 ax.set_ylabel('AVG List and Sale')
@@ -107,28 +107,6 @@ ax.tick_params(axis='y', labelrotation=0)
 # display the chart in Streamlit
 st.pyplot(fig)
 
-
-# create a bar chart with two bars per product
-fig, ax = plt.subplots()
-bar_width = 0.4
-opacity = 0.8
-ax.bar(df['i_item_id'] - bar_width/2, df['agg2'], bar_width,
-       alpha=opacity, label='List')
-ax.bar(df['i_item_id'] + bar_width/2, df['agg4'], bar_width,
-       alpha=opacity, label='Sale')
-ax.set_title('AVG List and Sale Price by Product')
-ax.set_xlabel('Product')
-ax.set_ylabel('AVG List and Sale')
-ax.legend()
-
-# rotate the y-axis label
-ax.tick_params(axis='y', labelrotation=0)
-
-# set the x-axis tick labels to be the product IDs
-ax.set_xticklabels(df['i_item_id'].tolist())
-
-# display the chart in Streamlit
-st.pyplot(fig)
 
 
 st.write("query 28")
