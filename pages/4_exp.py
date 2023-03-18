@@ -64,16 +64,22 @@ df = pd.read_sql_query(query, engine)
 df.rename(columns=str.lower, inplace=True)
 st.dataframe(df)
 
+# rename the columns to lowercase
+df.rename(columns=str.lower, inplace=True)
+
+# sort the dataframe by agg2 in descending order
+df= df.sort_values('agg2', ascending=True)
+
+# create a bar chart
 fig, ax = plt.subplots()
-ax.barh(df['i_item_id'],df['agg1'],label='List')
-ax.barh(df['i_item_id'],df['agg4'],label='Sale')
-ax.set_title('Email promotion and Sales')
+ax.barh(df['i_item_id'], df['agg2'],label='List')
+ax.barh(df['i_item_id'], df['agg4'],label='Sale')
+ax.set_title('AVG List and Sale Price by Product')
+ax.set_ylabel('Product')
 ax.set_xlabel('AVG List and Sale')
-ax.set_ylabel('Items')
 ax.legend()
 
-# rotate the y-axis label
-ax.tick_params(axis='y', labelrotation=0)
-plt.figure(figsize=(10,6))
+
+
 # display the chart in Streamlit
 st.pyplot(fig)
