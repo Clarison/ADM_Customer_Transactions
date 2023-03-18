@@ -87,7 +87,7 @@ growth in store sales in the first three consecutive quarters for a given year."
 
 # get user input for month and year
 ##month = st.number_input('Enter a month (1-12)', min_value=1, max_value=12)
-year = st.number_input('Enter a year', min_value=1999, max_value=2023)
+year = st.selectbox('Enter a year', min_value=1999, max_value=2023)
 
 
 query1="""with ss as
