@@ -6,7 +6,7 @@ import datetime as dt
 import snowflake.connector as sf
 from sqlalchemy import create_engine
 from snowflake.sqlalchemy import URL
-
+import matplotlib.pyplot as plt
 #trying chemy
 
 engine = create_engine(URL(
