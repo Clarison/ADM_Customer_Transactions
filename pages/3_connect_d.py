@@ -39,9 +39,12 @@ st.dataframe(df)
 
 
 # define the parameters
-year = 2002
 gender = st.selectbox('Gender', ['M', 'F'])
 marital_status =st.selectbox('Marital Status', ['S', 'U','D','M','W']) 
+
+# create a dropdown for the year parameter with values from 1990 to 2023
+years = list(range(1990, 2024))
+year = st.selectbox('Year', years)
 
 
 # get the distinct education status values from the database
