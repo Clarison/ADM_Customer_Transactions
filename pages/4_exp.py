@@ -33,7 +33,7 @@ channel where the promotion was not offered by mail or in an event for given gen
 educational status.""")
 
 distinct_year_query = "select d_year from date_dim where d_year between 2000 and 2023;"
-distinct_year = pd.read_sql_query(distinct_year_query, engine)['d_year'].tolist()
+distinct_year = pd.read_sql_query(distinct_year_query, engine)['d_year'].unique().tolist()
 year = st.selectbox('State', distinct_year)
 
 st.write('You selected:', year)
