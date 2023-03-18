@@ -90,7 +90,7 @@ output by sales amount, by channel, and give Total sales.
 # get user input for year
 
 # get user input for month and year
-d_ca_gmt_offset_query="select ca_gmt_offset from customer_address and ca_gmt_offset is not null;"
+d_ca_gmt_offset_query="select ca_gmt_offset from customer_address where ca_gmt_offset is not null;"
 d_ca_gmt_offset = pd.read_sql_query(d_ca_gmt_offset_query, engine)['ca_gmt_offset'].unique().tolist()
 ca_gmt_offset = st.selectbox('GMT Offset', d_ca_gmt_offset)
 
