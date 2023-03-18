@@ -87,8 +87,9 @@ growth in store sales in the first three consecutive quarters for a given year."
 
 # get user input for month and year
 ##month = st.number_input('Enter a month (1-12)', min_value=1, max_value=12)
-year = st.selectbox('Enter a year', min_value=1999, max_value=2023)
-
+distinct_year_query = "select d_year from date_dim where d_year between 2000 and 2023;"
+distinct_year = pd.read_sql_query(distinct_year_query, engine)['d_year'].unique().tolist()
+year = st.selectbox('Year', distinct_year)
 
 query1="""with ss as
  (select ca_county,d_qoy, d_year,sum(ss_ext_sales_price) as store_sales
