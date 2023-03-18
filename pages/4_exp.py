@@ -143,7 +143,4 @@ df1 = pd.read_sql_query(query1, engine)
 df1.rename(columns=str.lower, inplace=True)
 st.dataframe(df1)
 
-# rename the columns to lowercase
-df1.rename(columns=str.lower, inplace=True)
-
 
