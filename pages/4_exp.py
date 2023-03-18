@@ -101,8 +101,8 @@ from
 where
 i_manufact_id = {manufacture_id}
 and i_item_sk = cs_item_sk 
-and d_date between {date1} and 
-        date_add(cast({date1} as date), 90 )
+and d_date between '{date1}' and 
+        date_add(cast('{date1}' as date), 90 )
 and d_date_sk = cs_sold_date_sk 
 and cs_ext_discount_amt  
      > ( 
@@ -113,8 +113,8 @@ and cs_ext_discount_amt
            ,date_dim
          where 
               cs_item_sk = i_item_sk 
-          and d_date between {date1} and
-                             date_add(cast({date1} as date), 90 )
+          and d_date between '{date1}' and
+                             date_add(cast('{date1}' as date), 90 )
           and d_date_sk = cs_sold_date_sk 
       ) 
  limit 10;"""
