@@ -1,4 +1,4 @@
-import streamlit as st
+rimport streamlit as st
 import plotly.graph_objs as go
 import pandas as pd
 import numpy as np
@@ -34,7 +34,11 @@ educational status.""")
 
 distinct_year_query = "select d_year from date_dim where d_year between 2000 and 2023;"
 distinct_year = pd.read_sql_query(distinct_year_query, engine)['d_year'].unique().tolist()
-year = st.selectbox('State', distinct_year)
+year = st.selectbox('Year', distinct_year)
+
+distinct_item_query = "select i_item_id from item;"
+distinct_item = pd.read_sql_query(distinct_year_query, engine)['i_item_id'].unique().tolist()
+item = st.selectbox('item', distinct_item)
 
 st.write('You selected:', year)
 query = """select  i_item_id, 
@@ -51,7 +55,7 @@ query = """select  i_item_id,
        cd_marital_status = 'S' and
        cd_education_status = 'College' and
        (p_channel_email = 'N' or p_channel_event = 'N') and
-       d_year = {} group by i_item_id order by i_item_id limit 100""".format(year)
+       d_year = {} group by i_item_id order by i_item_id limit 100""".format(year,item)
 
 df = pd.read_sql_query(query, engine)
 df.rename(columns=str.lower, inplace=True)
