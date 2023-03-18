@@ -85,9 +85,6 @@ st.pyplot(fig)
 st.write("""List counties where the percentage growth in web sales is consistently higher compared to the percentage
 growth in store sales in the first three consecutive quarters for a given year.""")
 
-distinct_year_query1 = "select d_year from date_dim where d_year between 2000 and 2023;"
-distinct_year1 = pd.read_sql_query(distinct_year_query1, engine)['d_year'].unique().tolist()
-year1 = st.selectbox('Year', distinct_year1)
 
 query1="""with ss as
  (select ca_county,d_qoy, d_year,sum(ss_ext_sales_price) as store_sales
@@ -137,7 +134,7 @@ query1="""with ss as
        > case when ss1.store_sales > 0 then ss2.store_sales/ss1.store_sales else null end
     and case when ws2.web_sales > 0 then ws3.web_sales/ws2.web_sales else null end
        > case when ss2.store_sales > 0 then ss3.store_sales/ss2.store_sales else null end
- order by ss1.ca_county;""".format(year1)
+ order by ss1.ca_county;""".format(year)
 
 df1 = pd.read_sql_query(query1, engine)
 df1.rename(columns=str.lower, inplace=True)
