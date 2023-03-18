@@ -87,7 +87,7 @@ df.rename(columns=str.lower, inplace=True)
 df= df.sort_values('agg2', ascending=True)
 
 # create a bar chart
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(facecolor='black')
 ax.barh(df['i_item_id'], df['agg2'],label='List')
 ax.barh(df['i_item_id'], df['agg4'],label='Sale')
 ax.set_title('AVG List and Sale Price by Product')
