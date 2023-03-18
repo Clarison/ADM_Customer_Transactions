@@ -93,7 +93,7 @@ output by sales amount, by channel, and give Total sales.
 ca_gmt_offset = st.number_input('Enter the offset', min_value=-10, max_value=-5)
 
 year = st.number_input('Enter a year', min_value=1998, max_value=2023)
-month = st.number_input('Enter a month', min_value=01, max_value=12)
+month = st.number_input('Enter a month', min_value=1, max_value=12)
 
 d_category = pd.read_sql_query("select i_category from item", engine)['i_category'].unique().tolist()
 category = st.selectbox('Category', d_category)
