@@ -95,7 +95,7 @@ ca_gmt_offset = st.number_input('Enter the offset', min_value=-10, max_value=-5)
 year = st.number_input('Enter a year', min_value=1998, max_value=2023)
 month = st.number_input('Enter a month', min_value=1, max_value=12)
 
-d_category = pd.read_sql_query("select i_category from item", engine)['i_category'].unique().tolist()
+d_category = pd.read_sql_query("select i_category from item", engine)['i_category'].unique()
 category = st.selectbox('Category', d_category)
 
 query1=f"""with ss as (
@@ -111,7 +111,7 @@ query1=f"""with ss as (
   i_manufact_id
 from
  item
-where i_category in ({category}))
+where i_category in ('{category}'))
  and     ss_item_sk              = i_item_sk
  and     ss_sold_date_sk         = d_date_sk
  and     d_year                  = {year}
@@ -132,7 +132,7 @@ where i_category in ({category}))
   i_manufact_id
 from
  item
-where i_category in ({category}))
+where i_category in ('{category}'))
  and     cs_item_sk              = i_item_sk
  and     cs_sold_date_sk         = d_date_sk
  and     d_year                  = {year}
@@ -153,7 +153,7 @@ where i_category in ({category}))
   i_manufact_id
 from
  item
-where i_category in ({category}))
+where i_category in ('{category}'))
  and     ws_item_sk              = i_item_sk
  and     ws_sold_date_sk         = d_date_sk
  and     d_year                  = {year}
