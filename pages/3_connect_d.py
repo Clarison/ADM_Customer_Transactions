@@ -169,6 +169,64 @@ st.dataframe(df)
 
 st.write("query 29")
 
+
+# get user input for month and year
+month = st.number_input('Enter a month (1-12)', min_value=1, max_value=12)
+year = st.number_input('Enter a year', min_value=1999, max_value=2023)
+
+
+
+# define the SQL query with the parameters
+query = """
+   SELECT   
+     i_item_id
+    ,i_item_desc
+    ,s_store_id
+    ,s_store_name
+    ,SUM(ss_quantity)        AS store_sales_quantity
+    ,SUM(sr_return_quantity) AS store_returns_quantity
+    ,SUM(cs_quantity)        AS catalog_sales_quantity
+FROM
+    store_sales
+   ,store_returns
+   ,catalog_sales
+   ,date_dim             d1
+   ,date_dim             d2
+   ,date_dim             d3
+   ,store
+   ,item
+WHERE
+     d1.d_moy               = {month}
+ AND d1.d_year              = {year}
+ AND d1.d_date_sk           = ss_sold_date_sk
+ AND i_item_sk              = ss_item_sk
+ AND s_store_sk             = ss_store_sk
+ AND ss_customer_sk         = sr_customer_sk
+ AND ss_item_sk             = sr_item_sk
+ AND ss_ticket_number       = sr_ticket_number
+ AND sr_returned_date_sk    = d2.d_date_sk
+ AND d2.d_moy               BETWEEN {month} AND {month} + 3
+ AND d2.d_year              = {year}
+ AND sr_customer_sk         = cs_bill_customer_sk
+ AND sr_item_sk             = cs_item_sk
+ AND cs_sold_date_sk        = d3.d_date_sk     
+ AND d3.d_year              IN ({year},{year+1},{year+2})
+GROUP BY
+    i_item_id
+   ,i_item_desc
+   ,s_store_id
+   ,s_store_name
+HAVING
+SUM(sr_return_quantity) > 1
+ORDER BY
+    SUM(sr_return_quantity) DESC
+LIMIT 10;"""
+
+# execute query and display results
+df = pd.read_sql_query(query, engine)
+df.rename(columns=str.lower, inplace=True)
+st.dataframe(df)
+
 df = pd.read_sql_query("""select   
      i_item_id
     ,i_item_desc
