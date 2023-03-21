@@ -27,7 +27,7 @@ References:
 4. https://github.com/Snowflake-Labs/snowpark-python-demos/tree/main/tpcds-customer-lifetime-value
 
 Team:
-Clarison James Dsilva
+Clarison James Dsilva 
 Alekya Kastury
 
 Queries: 
